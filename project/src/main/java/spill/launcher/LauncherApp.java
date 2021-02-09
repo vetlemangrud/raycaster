@@ -14,8 +14,6 @@ public class LauncherApp extends Application {
         Parent parent = FXMLLoader.load(getClass().getResource("/fxml/laucherUI.fxml"));
 
         stage.setScene(new Scene(parent));
-        stage.setWidth(800);
-        stage.setHeight(600);
         stage.setResizable(false);
         stage.setTitle("Sykt kult spill");
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/icon.png")));
