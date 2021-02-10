@@ -23,13 +23,14 @@ public interface StorageInteface {
 	String readData(int saveId, String property) throws IOException;
 	
 	/**
-	 * Write the value to the property in the stream. Creates new property if not in file
+	 * Write the value to the property in the stream. Creates new property if not in input stream
+	 * @param is The stream to read from
      * @param os The stream to write to
 	 * @param property The property to write to
      * @param value The value to give the property
 	 * 
 	 */
-	void writeData(OutputStream os, String property, String value);
+	void writeData(InputStream is, OutputStream os, String property, String value);
 	/**
 	 * Write the value to the property in the file with the given id. Creates new property if not in file. Creates new file if none with the given id.
 	 * @param saveId The id of the file to write to
