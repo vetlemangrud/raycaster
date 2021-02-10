@@ -12,7 +12,7 @@ public interface StorageInteface {
      * @param property The property to return.
 	 * @return The value of the property.
 	 */
-	String readData(InputStream is, String property);
+	String readSave(InputStream is, String property);
 	/**
 	 * Read the value of a property in a specific save.
 	 * @param saveId The id of the save
@@ -20,7 +20,7 @@ public interface StorageInteface {
 	 * @return The value of the property.
 	 * @throws IOException if the saveId is invalid
 	 */
-	String readData(int saveId, String property) throws IOException;
+	String readSave(int saveId, String property) throws IOException;
 	
 	/**
 	 * Write the value to the property in the stream. Creates new property if not in input stream
@@ -30,7 +30,7 @@ public interface StorageInteface {
      * @param value The value to give the property
 	 * 
 	 */
-	void writeData(InputStream is, OutputStream os, String property, String value);
+	void writeSave(InputStream is, OutputStream os, String property, String value);
 	/**
 	 * Write the value to the property in the file with the given id. Creates new property if not in file. Creates new file if none with the given id.
 	 * @param saveId The id of the file to write to
@@ -38,6 +38,6 @@ public interface StorageInteface {
      * @param value The value to give the property
 	 * @throws IOException If a file at the proper location can't be written to
 	 */
-	void writeData(int saveId, String property, String value) throws IOException;
+	void writeSave(int saveId, String property, String value) throws IOException;
 
 }
