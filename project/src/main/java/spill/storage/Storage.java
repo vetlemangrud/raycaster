@@ -99,23 +99,8 @@ public class Storage implements StorageInteface {
 
     @Override
     public String readSave(String property) throws IOException {
-        return cache.get(property);
-    }
-
-    public void writeSave(InputStream is, OutputStream os, String property, String value) {
         validatePropertyName(property);
-        validateValue(value);
-        try (var writer = new PrintWriter(os)) {
-            try (Scanner scanner = new Scanner(is)) {
-                while (scanner.hasNextLine()) {
-                    String line = scanner.nextLine();
-                    if (line.startsWith(property + PROPERY_VALUE_DIVIDER)) {
-                        line = line.substring(property.length() + PROPERY_VALUE_DIVIDER.length()) + value;
-                    }
-                    writer.println(line);
-                }
-            }
-        }
+        return cache.get(property);
     }
 
     @Override
