@@ -99,7 +99,7 @@ public class Storage implements StorageInteface {
     }
 
     @Override
-    public String readSave(String property) throws IOException {
+    public String readSave(String property) {
         validatePropertyName(property);
         return cache.get(property);
     }
