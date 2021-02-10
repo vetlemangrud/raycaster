@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -30,6 +31,23 @@ public class Storage implements StorageInteface {
     public Storage(int saveId){
         this.saveId = saveId;
         cache = loadCache();
+    }
+
+    private Path getGameUserFolderPath() {
+        return Path.of(System.getProperty("user.home"), "tdt4100", "game");
+    }
+
+    private boolean ensureGameUserFolder() {
+        try {
+            Files.createDirectories(getGameUserFolderPath());
+            return true;
+        } catch (IOException ioe) {
+            return false;
+        }
+    }
+
+    private Path getSavePath(int id) {
+        return getGameUserFolderPath().resolve("Save" + id + "." + SAVE_EXTENSION);
     }
 
     private HashMap<String,String> loadCache(){
@@ -57,28 +75,11 @@ public class Storage implements StorageInteface {
         ensureGameUserFolder();
         try (OutputStream os = new FileOutputStream(savePath.toFile())) {
             try (PrintWriter writer = new PrintWriter(os)) {
-                for (String property : cache.keySet()) {
-                    writer.println(property + PROPERY_VALUE_DIVIDER + cache.get(property));
+                for (Map.Entry<String,String> property : cache.entrySet()) {
+                    writer.println(property.getKey() + PROPERY_VALUE_DIVIDER + property.getValue());
                 }
             }
         }
-    }
-
-    private Path getGameUserFolderPath() {
-        return Path.of(System.getProperty("user.home"), "tdt4100", "game");
-    }
-
-    private boolean ensureGameUserFolder() {
-        try {
-            Files.createDirectories(getGameUserFolderPath());
-            return true;
-        } catch (IOException ioe) {
-            return false;
-        }
-    }
-
-    private Path getSavePath(int id) {
-        return getGameUserFolderPath().resolve("Save" + id + "." + SAVE_EXTENSION);
     }
 
     private String validatePropertyName(String property) throws IllegalArgumentException {
