@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.StackPane?>
 
 
-<StackPane xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GameController.java">
+<StackPane xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="spill.gamelogic.GameController">
    <children>
       <Canvas fx:id="canvas" height="600.0" width="800.0" />
    </children>
