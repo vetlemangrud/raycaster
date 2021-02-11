@@ -21,24 +21,26 @@ public class Storage implements StorageInteface {
     // Mye av koden her er hentet og modifisert fra eksempeloppgaven (TodoList)
     // Endringene kommer av at jeg har en annen måte å lagre data på. Dataene her er på formen "PROPERTY=value", der både property og value er vilkårlige strenger (Feks JSON)
     // Lagringssystemet blir da mer åpent og man er ikke låst til et strengt bruksområde
-    //Har også laget et cachingsystem så man slipper å lese fila hver gang
+    // Har også laget et cachingsystem så man slipper å lese fila hver gang
 
     private static final String SAVE_EXTENSION = "gamesave";
     private static final String PROPERY_VALUE_DIVIDER = "=";
 
-    private int saveId;
+    private int saveId; //Id of the save to store to and read from
 
-    private HashMap<String,String> cache;
+    private HashMap<String,String> cache; //The cache is a mirror of the file
 
     public Storage(int saveId){
         this.saveId = saveId;
         cache = loadCache();
     }
 
+    // Gets path to saves
     private static Path getGameUserFolderPath() {
         return Path.of(System.getProperty("user.home"), "tdt4100", "game");
     }
 
+    //Returns false if no folder
     private static boolean ensureGameUserFolder() {
         try {
             Files.createDirectories(getGameUserFolderPath());
@@ -48,10 +50,12 @@ public class Storage implements StorageInteface {
         }
     }
 
+    //Gets path to the save with the given id
     private static Path getSavePath(int id) {
         return getGameUserFolderPath().resolve("Save" + id + "." + SAVE_EXTENSION);
     }
 
+    //Scans savefile and adds properties and values to the cache
     private HashMap<String,String> loadCache(){
         HashMap<String,String> cache = new HashMap<>();
         try (InputStream is = new FileInputStream(getSavePath(saveId).toFile())) {
@@ -72,6 +76,7 @@ public class Storage implements StorageInteface {
         return cache;
     }
 
+    //Overrwrites the savefile with cache contents
     private void saveCache() throws IOException{
         var savePath = getSavePath(saveId);
         ensureGameUserFolder();
@@ -100,6 +105,7 @@ public class Storage implements StorageInteface {
         return value;
     }
 
+    //Get the ids of all saves
     public static int[] getAllUsedIds(){
         File saveFolder = getGameUserFolderPath().toFile();
         File[] listOfSaves = saveFolder.listFiles();
