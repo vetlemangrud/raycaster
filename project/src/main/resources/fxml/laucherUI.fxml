@@ -60,7 +60,7 @@
       <Pane layoutX="113.0" layoutY="463.0" prefHeight="69.0" prefWidth="575.0" style="-fx-background-color: rgba(0,0,0,0.3); -fx-border-color: #000000; -fx-border-width: 2;">
          <children>
             <Button id="createNewSaveButton" layoutX="292.0" layoutY="19.0" mnemonicParsing="false" onAction="#createNewSaveButtonAction" prefHeight="32.0" prefWidth="262.0" style="-fx-background-color: #000000;" text="Create New Save" textFill="WHITE" />
-            <TextField id="saveNameTextField" layoutX="14.0" layoutY="22.0" prefHeight="26.0" prefWidth="272.0" promptText="Save Name" />
+            <TextField id="saveNameTextField" fx:id="saveNameTextField" layoutX="14.0" layoutY="22.0" prefHeight="26.0" prefWidth="272.0" promptText="Save Name" />
          </children>
       </Pane>
    </children>
