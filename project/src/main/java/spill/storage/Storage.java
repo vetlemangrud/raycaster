@@ -83,7 +83,7 @@ public class Storage implements StorageInteface {
     }
 
     private String validatePropertyName(String property) throws IllegalArgumentException {
-        Pattern propertyPattern = Pattern.compile("^(?:[A-Z]|_)+$");
+        Pattern propertyPattern = Pattern.compile("^(?:[A-Z_])+\\z");
         if (!propertyPattern.matcher(property).find()) {
             throw new IllegalArgumentException("Storage property names can only contain capital letters A-Z and underscores (_) Must contain at least one character");
         }
@@ -91,7 +91,7 @@ public class Storage implements StorageInteface {
     }
 
     private String validateValue(String value) throws IllegalArgumentException {
-        Pattern valuePattern = Pattern.compile("\\n");
+        Pattern valuePattern = Pattern.compile("(^$|\\n)");
         if (valuePattern.matcher(value).find()) {
             throw new IllegalArgumentException("Values cannot contain newline characters");
         }
@@ -109,6 +109,12 @@ public class Storage implements StorageInteface {
         validatePropertyName(property);
         validateValue(value);
         cache.put(property, value);
+        saveCache();
+    }
+
+    @Override
+    public void clear() throws IOException{
+        cache.clear();
         saveCache();
     }
 }
