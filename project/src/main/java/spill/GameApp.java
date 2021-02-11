@@ -16,8 +16,6 @@ import spill.rendering.BirdseyeRenderer;
 import javafx.scene.image.Image;
 
 public class GameApp extends Application {
-    BirdseyeRenderer br;
-
     @Override
     public void start(Stage stage) throws IOException {
         stage.setResizable(false);
@@ -31,13 +29,13 @@ public class GameApp extends Application {
 
         //Game scene is not made in FXML because it's just a canvas :P
         FXMLLoader gameUILoader = new FXMLLoader(getClass().getResource("/fxml/gameUI.fxml"));
-        Parent gameUI = launcherUILoader.load();
-        Scene gameScene = new Scene(launcherUI);
+        Parent gameUI = gameUILoader.load();
+        Scene gameScene = new Scene(gameUI);
 
         //Injecting scenes into the controller of the other scene to be able to switch scenes back and forth
         //Based on code by AbstractVoid: https://stackoverflow.com/questions/12804664/how-to-swap-screens-in-a-javafx-application-in-the-controller-class
         LauncherController launcherController = (LauncherController) launcherUILoader.getController();
-        GameController gameController = (GameController) launcherUILoader.getController();
+        GameController gameController = (GameController) gameUILoader.getController();
 
         launcherController.setGameScene(gameScene);
         gameController.setLauncherScene(launcherScene);
