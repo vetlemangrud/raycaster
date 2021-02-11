@@ -4,13 +4,14 @@ import javafx.scene.paint.Color;
 
 public class Level {
 
-    private Wall[][] walls;
+    private Wall[][] walls; //[width][height] array of walls. Cannot be null
     private int width;
     private int height;
 
-    private final static Wall Air = new Wall("Air", null);
-    private final static Wall GreenWall = new Wall("Air", Color.GREEN);
+    private static final Wall Air = new Wall(null);
+    private static final Wall GreenWall = new Wall(Color.GREEN);
     
+    //Creates level from an array of walls
     public Level(Wall[][] walls){
         try {
             width = walls.length;
