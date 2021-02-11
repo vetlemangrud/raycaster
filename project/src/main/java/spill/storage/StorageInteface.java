@@ -21,4 +21,6 @@ public interface StorageInteface {
 	 */
 	void writeSave(String property, String value) throws IOException;
 
+	void clear() throws IOException;
+
 }
