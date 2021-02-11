@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import spill.storage.Storage;
 
 import java.util.regex.Pattern;
 
@@ -29,16 +30,27 @@ public class LauncherController {
     private Scene gameScene;
 
     @FXML
-    private void createNewSaveButtonAction(Event evt) {
+    private void createNewSaveButtonAction(ActionEvent evt) {
         String saveName = validateSaveName(saveNameTextField.getText());
-        saveSelectVBox.getChildren().add(createStartSaveButton(saveName, 1));
+        addStartSaveButton(saveName, 1);
     }
 
-    private void startSaveButtonAction(Event evt) {
+    @FXML
+    void initialize(){
+        //Get all saves and create buttons
+        int[] usedIds = Storage.getAllUsedIds();
+        for (int id : usedIds){
+            Storage idStorage = new Storage(id);
+            addStartSaveButton(idStorage.readSave("NAME"), id);
+        }
+    }
+
+    private void startSaveButtonAction(ActionEvent evt) {
         System.out.println(((Button) evt.getSource()).getId());
+        openGameScene(evt);
     }
 
-    private Button createStartSaveButton(String text, int saveId) {
+    private void addStartSaveButton(String text, int saveId) {
         // Vanskelig å lage dype kloner av JavaFX-elementer, så det er bedre å lage et
         // nytt for hver knapp enn å definere i SceneBuilder og prøve å klone
         Button startSaveButton = new Button(text);
@@ -48,7 +60,7 @@ public class LauncherController {
         startSaveButton.setTextFill(Color.WHITE);
         startSaveButton.setId(String.valueOf(saveId));
         startSaveButton.setOnAction(evt -> startSaveButtonAction(evt));
-        return startSaveButton;
+        saveSelectVBox.getChildren().add(startSaveButton);
     }
 
     private String validateSaveName(String saveName) {
