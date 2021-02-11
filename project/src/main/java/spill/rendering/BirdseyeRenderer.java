@@ -1,4 +1,4 @@
-package spill.renderer;
+package spill.rendering;
 
 import javafx.scene.canvas.GraphicsContext;
 
