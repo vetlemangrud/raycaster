@@ -16,6 +16,7 @@ public class GameController {
     private Scene launcherScene;
 
     private BirdseyeRenderer br;
+    private int saveId;
 
     @FXML
     void initialize(){
@@ -23,13 +24,19 @@ public class GameController {
         br.render();
     }
 
+    //Exits game to launcher
     private void openLauncherScene(ActionEvent actionEvent){
 		Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         stage.setScene(launcherScene);
     }
 
+    //Used by GameApp
     public void setLauncherScene(Scene launcherScene){
         this.launcherScene = launcherScene;
+    }
+
+    public void setSaveId(int id){
+        saveId = id;
     }
     
 }

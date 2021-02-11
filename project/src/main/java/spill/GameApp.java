@@ -4,15 +4,11 @@ import java.io.IOException;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
 import spill.gamelogic.GameController;
 import spill.launcher.LauncherController;
-import spill.rendering.BirdseyeRenderer;
 import javafx.scene.image.Image;
 
 public class GameApp extends Application {
@@ -38,6 +34,7 @@ public class GameApp extends Application {
         GameController gameController = (GameController) gameUILoader.getController();
 
         launcherController.setGameScene(gameScene);
+        launcherController.setGameController(gameController);
         gameController.setLauncherScene(launcherScene);
 
         stage.setScene(launcherScene);
