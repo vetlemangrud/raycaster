@@ -1,5 +1,6 @@
 package spill.storage;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -9,6 +10,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -33,11 +35,11 @@ public class Storage implements StorageInteface {
         cache = loadCache();
     }
 
-    private Path getGameUserFolderPath() {
+    private static Path getGameUserFolderPath() {
         return Path.of(System.getProperty("user.home"), "tdt4100", "game");
     }
 
-    private boolean ensureGameUserFolder() {
+    private static boolean ensureGameUserFolder() {
         try {
             Files.createDirectories(getGameUserFolderPath());
             return true;
@@ -46,7 +48,7 @@ public class Storage implements StorageInteface {
         }
     }
 
-    private Path getSavePath(int id) {
+    private static Path getSavePath(int id) {
         return getGameUserFolderPath().resolve("Save" + id + "." + SAVE_EXTENSION);
     }
 
@@ -96,6 +98,29 @@ public class Storage implements StorageInteface {
             throw new IllegalArgumentException("Values cannot contain newline characters");
         }
         return value;
+    }
+
+    public static int[] getAllUsedIds(){
+        File saveFolder = getGameUserFolderPath().toFile();
+        File[] listOfSaves = saveFolder.listFiles();
+
+        //Make Arraylist of all ids
+        ArrayList<Integer> ids = new ArrayList<Integer>();
+        Pattern filePattern = Pattern.compile("^Save(?<id>\\d+)\\."+SAVE_EXTENSION+"$");
+        for (File save : listOfSaves) {
+            Matcher fileMatch = filePattern.matcher(save.getName());
+            if(fileMatch.find()){
+                ids.add(Integer.parseInt(fileMatch.group("id")));
+            }
+        }
+
+        //Turn ArrayList to Array when we know the size
+        int[] idArray = new int[ids.size()];
+        for (int i = 0; i < idArray.length; i++) {
+            idArray[i] = ids.get(i);
+        }
+
+        return idArray;
     }
 
     @Override
