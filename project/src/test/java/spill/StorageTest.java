@@ -80,4 +80,16 @@ public class StorageTest {
         assertSame("OTHER", other.readSave("ABC"));
     }
 
+    @Test
+    void testClear(){
+        assertDoesNotThrow(() -> {
+            storage.writeSave("ABC", "CBA");
+        });
+        assertDoesNotThrow(() -> {
+            storage.clear();
+        });
+        assertSame(null, storage.readSave("ABC"));
+
+    }
+
 }
