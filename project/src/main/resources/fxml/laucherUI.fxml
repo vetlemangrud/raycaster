@@ -61,6 +61,7 @@
          <children>
             <Button id="createNewSaveButton" layoutX="292.0" layoutY="19.0" mnemonicParsing="false" onAction="#createNewSaveButtonAction" prefHeight="32.0" prefWidth="262.0" style="-fx-background-color: #000000;" text="Create New Save" textFill="WHITE" />
             <TextField id="saveNameTextField" fx:id="saveNameTextField" layoutX="14.0" layoutY="22.0" prefHeight="26.0" prefWidth="272.0" promptText="Save Name" />
+            <Text id="errorText" fx:id="errorText" fill="RED" layoutX="15.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EPIC FAIL XD" visible="false" wrappingWidth="541.13671875" />
          </children>
       </Pane>
    </children>
