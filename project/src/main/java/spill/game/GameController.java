@@ -1,5 +1,6 @@
 package spill.game;
 
+import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -7,8 +8,10 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.stage.Stage;
 import spill.rendering.BirdseyeRenderer;
+import spill.storage.Storage;
+import spill.storage.StorageInteface;
 
-public class GameController {
+public class GameController extends AnimationTimer{
 
     @FXML
     private Canvas canvas;
@@ -16,12 +19,12 @@ public class GameController {
     private Scene launcherScene;
 
     private BirdseyeRenderer br;
-    private int saveId;
+    private StorageInteface storage;
+    private 
 
     @FXML
     void initialize(){
         br = new BirdseyeRenderer(canvas.getGraphicsContext2D());
-        br.render();
     }
 
     //Exits game to launcher
@@ -36,7 +39,14 @@ public class GameController {
     }
 
     public void startGame(int id){
-        saveId = id;
+        storage = new Storage(id);
+        this.start();
+        br.render();
+    }
+
+    @Override
+    public void handle(long now){
+        System.out.println("Hello");
     }
     
 }
