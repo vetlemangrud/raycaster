@@ -8,6 +8,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import spill.game.GameController;
 import spill.storage.Storage;
@@ -29,21 +30,28 @@ public class LauncherController {
     @FXML
     private TextField saveNameTextField;
 
+    @FXML Text errorText;
+
     private Scene gameScene;
     private GameController gameController;
 
     @FXML
     private void createNewSaveButtonAction(ActionEvent evt) {
-        String saveName = validateSaveName(saveNameTextField.getText());
-        int[] usedIds = Storage.getAllUsedIds();
-        int saveId = Arrays.stream(usedIds).max().getAsInt() + 1;
-        Storage newSaveStorage = new Storage(saveId);
         try {
-            newSaveStorage.writeSave("NAME", saveName);
-        } catch (IOException e) {
-            System.err.println("Saving error");
+            String saveName = validateSaveName(saveNameTextField.getText());
+            int[] usedIds = Storage.getAllUsedIds();
+            int saveId = Arrays.stream(usedIds).max().getAsInt() + 1;
+            Storage newSaveStorage = new Storage(saveId);
+            try {
+                newSaveStorage.writeSave("NAME", saveName);
+                addStartSaveButton(saveName, saveId);
+            } catch (IOException e) {
+                System.err.println("Saving error");
+            }
+        } catch (IllegalArgumentException e) {
+            errorText.setText(e.getMessage());
+            errorText.setVisible(true);
         }
-        addStartSaveButton(saveName, saveId);
     }
 
     @FXML
@@ -52,7 +60,12 @@ public class LauncherController {
         int[] usedIds = Storage.getAllUsedIds();
         for (int id : usedIds){
             Storage idStorage = new Storage(id);
-            addStartSaveButton(idStorage.readSave("NAME"), id);
+            try {
+                addStartSaveButton(validateSaveName(idStorage.readSave("NAME")), id);
+            } catch (IllegalArgumentException e) {
+                System.err.println("Save with id " + id + " has an invalid name, and is maybe corrupted");
+            }
+            ;
         }
     }
 
