@@ -9,13 +9,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import spill.gamelogic.GameController;
+import spill.game.GameController;
 import spill.storage.Storage;
 
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.regex.Pattern;
 
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 
 public class LauncherController {
 
@@ -34,7 +35,15 @@ public class LauncherController {
     @FXML
     private void createNewSaveButtonAction(ActionEvent evt) {
         String saveName = validateSaveName(saveNameTextField.getText());
-        addStartSaveButton(saveName, 1);
+        int[] usedIds = Storage.getAllUsedIds();
+        int saveId = Arrays.stream(usedIds).max().getAsInt() + 1;
+        Storage newSaveStorage = new Storage(saveId);
+        try {
+            newSaveStorage.writeSave("NAME", saveName);
+        } catch (IOException e) {
+            System.err.println("Saving error");
+        }
+        addStartSaveButton(saveName, saveId);
     }
 
     @FXML
@@ -72,10 +81,9 @@ public class LauncherController {
     //Exits launcher to game
     private void openGameScene(ActionEvent actionEvent){
         int id = Integer.parseInt(((Button) actionEvent.getSource()).getId());
-        gameController.setSaveId(id);
-
 		Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         stage.setScene(gameScene);
+        gameController.startGame(id);
     }
 
     public void setGameScene(Scene gameScene){

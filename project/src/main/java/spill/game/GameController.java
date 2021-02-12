@@ -1,4 +1,4 @@
-package spill.gamelogic;
+package spill.game;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -35,7 +35,7 @@ public class GameController {
         this.launcherScene = launcherScene;
     }
 
-    public void setSaveId(int id){
+    public void startGame(int id){
         saveId = id;
     }
     

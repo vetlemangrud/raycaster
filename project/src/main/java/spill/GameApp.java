@@ -7,7 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import spill.gamelogic.GameController;
+import spill.game.GameController;
 import spill.launcher.LauncherController;
 import javafx.scene.image.Image;
 

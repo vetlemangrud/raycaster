@@ -1,4 +1,4 @@
-package spill.gamelogic;
+package spill.game;
 
 import javafx.scene.paint.Color;
 
