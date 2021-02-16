@@ -3,7 +3,7 @@ package spill.rendering;
 import javafx.scene.canvas.GraphicsContext;
 import spill.game.GameController;
 
-public class BirdseyeRenderer{
+public class BirdseyeRenderer implements Renderer {
     GraphicsContext gc;
     GameController game;
     public BirdseyeRenderer(GraphicsContext gc, GameController game) {

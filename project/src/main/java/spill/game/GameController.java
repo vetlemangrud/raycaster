@@ -7,6 +7,8 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.stage.Stage;
+
+import spill.rendering.Renderer;
 import spill.rendering.BirdseyeRenderer;
 import spill.storage.Storage;
 import spill.storage.StorageInteface;
@@ -18,7 +20,7 @@ public class GameController extends AnimationTimer{
 
     private Scene launcherScene;
 
-    private BirdseyeRenderer br;
+    private Renderer br;
     private StorageInteface storage;
 
     @FXML
