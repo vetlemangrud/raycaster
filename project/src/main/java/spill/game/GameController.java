@@ -20,11 +20,10 @@ public class GameController extends AnimationTimer{
 
     private BirdseyeRenderer br;
     private StorageInteface storage;
-    private 
 
     @FXML
     void initialize(){
-        br = new BirdseyeRenderer(canvas.getGraphicsContext2D());
+        br = new BirdseyeRenderer(canvas.getGraphicsContext2D(), this);
     }
 
     //Exits game to launcher
