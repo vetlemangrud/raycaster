@@ -23,6 +23,9 @@ public class GameController extends AnimationTimer{
     private Renderer br;
     private StorageInteface storage;
 
+    //Game data
+    private Level currentLevel;
+
     @FXML
     void initialize(){
         br = new BirdseyeRenderer(canvas.getGraphicsContext2D(), this);
@@ -41,13 +44,25 @@ public class GameController extends AnimationTimer{
 
     public void startGame(int id){
         storage = new Storage(id);
+        currentLevel = new Level();
         this.start();
-        br.render();
     }
 
     @Override
     public void handle(long now){
-        System.out.println("Hello");
+        br.render();
+    }
+
+    public double getCanvasWidth(){
+        return canvas.getWidth();
+    }
+
+    public double getCanvasHeight(){
+        return canvas.getHeight();
+    }
+
+    public Level getCurrentLevel(){
+        return currentLevel;
     }
     
 }
