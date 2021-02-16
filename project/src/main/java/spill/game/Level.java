@@ -12,7 +12,7 @@ public class Level {
     private static final Wall GreenWall = new Wall(Color.GREEN);
     
     //Creates level from an array of walls
-    public Level(Wall[][] walls){
+    public Level(Wall[][] walls) {
         try {
             width = walls.length;
             height = walls[0].length;
@@ -29,6 +29,8 @@ public class Level {
 
     public Level(){
         walls = new Wall[20][20];
+        width = walls.length;
+        height = walls[0].length;
         for (int x = 0; x < walls.length; x++) {
             for (int y = 0; y < walls[0].length; y++) {
                 if (x == 2 || y == 3) {
@@ -42,5 +44,13 @@ public class Level {
 
     public Wall getWall(int x, int y){
         return walls[x][y];
+    }
+
+    public int getWidth(){
+        return width;
+    }
+
+    public int getHeight(){
+        return height;
     }
 }
