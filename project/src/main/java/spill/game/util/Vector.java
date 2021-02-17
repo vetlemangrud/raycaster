@@ -15,6 +15,12 @@ public class Vector{
         this.point = point;
     }
 
+    public static Vector getVectorFromAngleAndLength(double angle, double length){
+        double x = length * Math.cos(Math.toRadians(angle));
+        double y = length * Math.sin(Math.toRadians(angle));
+        return new Vector(x,y);
+    }
+
     //Making both static and non-static versions of basic functions
     static Vector add(Vector a, Vector b) {
         return new Vector(a.point.add(b.point));
