@@ -22,17 +22,9 @@ public class Player {
         return this.pos;
     }
 
-    // public void setPos(Vector pos) {
-    //     this.pos = pos;
-    // }
-
     public double getAngle() {
         return this.angle;
     }
-
-    // public void setAngle(double angle) {
-    //     this.angle = angle;
-    // }
 
     public void forward(){
         Vector velocity = Vector.getVectorFromAngleAndLength(angle, SPEED);
