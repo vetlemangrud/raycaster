@@ -65,7 +65,7 @@ public class GameController extends AnimationTimer{
         pressedKeys = new ArrayList<>();
         br = new BirdseyeRenderer(canvas.getGraphicsContext2D(), this);
         currentLevel = new Level();
-        player = new Player(currentLevel.getWidth()/2, currentLevel.getHeight()/2);
+        player = new Player(currentLevel);
         this.start();
     }
 
