@@ -22,7 +22,7 @@ public class Vector{
     }
 
     //Making both static and non-static versions of basic functions
-    static Vector add(Vector a, Vector b) {
+    public static Vector add(Vector a, Vector b) {
         return new Vector(a.point.add(b.point));
     }
     
@@ -32,7 +32,7 @@ public class Vector{
         return c;
     }
 
-    static Vector sub(Vector a, Vector b) {
+    public static Vector sub(Vector a, Vector b) {
         return new Vector(a.point.subtract(b.point));
     }
     
@@ -42,7 +42,7 @@ public class Vector{
         return c;
     }
 
-    static Vector mult(Vector a, double b) {
+    public static Vector mult(Vector a, double b) {
         return new Vector(a.point.multiply(b));
     }
 
