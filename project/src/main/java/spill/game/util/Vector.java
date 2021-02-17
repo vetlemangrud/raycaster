@@ -32,6 +32,16 @@ public class Vector{
         return c;
     }
 
+    static Vector sub(Vector a, Vector b) {
+        return new Vector(a.point.subtract(b.point));
+    }
+    
+    public Vector sub(Vector b) {
+        Vector c = Vector.sub(this, b);
+        this.point = c.point;
+        return c;
+    }
+
     static Vector mult(Vector a, double b) {
         return new Vector(a.point.multiply(b));
     }
