@@ -1,6 +1,7 @@
 package spill.game;
 
 import javafx.scene.paint.Color;
+import spill.game.util.Vector;
 
 public class Level {
 
@@ -44,6 +45,10 @@ public class Level {
 
     public Wall getWall(int x, int y){
         return walls[x][y];
+    }
+
+    public Wall getWall(Vector pos){
+        return walls[(int)Math.floor(pos.getX())][(int)Math.floor(pos.getY())];
     }
 
     public int getWidth(){
