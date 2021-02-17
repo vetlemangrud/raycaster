@@ -8,9 +8,11 @@ public class Player {
 
     private Vector pos;
     private double angle;
+    private Level level;
     
 
     public Player(Level level){
+        this.level = level;
         pos = new Vector(level.getWidth()/2, level.getHeight()/2);
         angle = 0;
     }
@@ -33,11 +35,18 @@ public class Player {
     // }
 
     public void forward(){
-        pos.add(Vector.getVectorFromAngleAndLength(angle, SPEED));
+        Vector velocity = Vector.getVectorFromAngleAndLength(angle, SPEED);
+        if (level.getWall(Vector.add(pos, velocity)).color == null) {
+            pos.add(velocity);
+        }
+        
     }
 
     public void backward(){
-        pos.sub(Vector.getVectorFromAngleAndLength(angle, SPEED));
+        Vector velocity = Vector.getVectorFromAngleAndLength(angle, SPEED);
+        if (level.getWall(Vector.sub(pos, velocity)).color == null) {
+            pos.sub(velocity);
+        }
     }
 
     public void turnLeft(){
