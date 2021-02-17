@@ -43,4 +43,13 @@ public class Vector{
     public double getY() {
         return point.getY();
     }
+
+    public void setX(double x) {
+        point = new Point2D(x, getY());
+    }
+
+    public void setY(double y) {
+        point = new Point2D(getX(), y);
+    }
+
 }
