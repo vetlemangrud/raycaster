@@ -10,8 +10,8 @@ public class Player {
     private double angle;
     
 
-    public Player(double x, double y){
-        pos = new Vector(x, y);
+    public Player(Level level){
+        pos = new Vector(level.getWidth()/2, level.getHeight()/2);
         angle = 0;
     }
 
