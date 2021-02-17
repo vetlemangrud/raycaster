@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 
 import spill.rendering.Renderer;
 import spill.rendering.BirdseyeRenderer;
+import spill.storage.LevelLoader;
 import spill.storage.Storage;
 import spill.storage.StorageInteface;
 
@@ -86,6 +87,7 @@ public class GameController extends AnimationTimer{
     }
 
     public void startGame(int id){
+        LevelLoader.loadLevel(1);
         storage = new Storage(id);
         pressedKeys = new ArrayList<>();
         br = new BirdseyeRenderer(canvas.getGraphicsContext2D(), this);
