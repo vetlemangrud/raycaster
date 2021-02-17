@@ -25,6 +25,7 @@ public class GameController extends AnimationTimer{
 
     //Game data
     private Level currentLevel;
+    private Player player;
 
     @FXML
     void initialize(){
@@ -45,6 +46,7 @@ public class GameController extends AnimationTimer{
     public void startGame(int id){
         storage = new Storage(id);
         currentLevel = new Level();
+        player = new Player(currentLevel.getWidth()/2, currentLevel.getHeight()/2);
         this.start();
     }
 
@@ -65,4 +67,7 @@ public class GameController extends AnimationTimer{
         return currentLevel;
     }
     
+    public Player getPlayer(){
+        return player;
+    }
 }
