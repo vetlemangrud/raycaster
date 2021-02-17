@@ -39,7 +39,6 @@ public class GameController extends AnimationTimer{
 
     @FXML
     public void onKeyPressed(KeyEvent evt){
-        System.out.println(evt.getCode().getName());
         if (!pressedKeys.contains(evt.getCode().getName())) {
             pressedKeys.add(evt.getCode().getName());
         }
