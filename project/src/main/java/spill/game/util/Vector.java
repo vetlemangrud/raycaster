@@ -36,7 +36,7 @@ public class Vector{
         return new Vector(a.point.multiply(b));
     }
 
-    public Vector add(double b) {
+    public Vector mult(double b) {
         Vector c = Vector.mult(this, b);
         this.point = c.point;
         return c;
