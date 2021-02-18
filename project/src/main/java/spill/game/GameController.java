@@ -1,9 +1,5 @@
 package spill.game;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
-import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -15,9 +11,6 @@ import javafx.stage.Stage;
 
 import spill.rendering.Renderer;
 import spill.rendering.BirdseyeRenderer;
-import spill.storage.LevelLoader;
-import spill.storage.Storage;
-import spill.storage.StorageInteface;
 
 public class GameController{
     
