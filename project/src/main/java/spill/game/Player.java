@@ -28,8 +28,11 @@ public class Player {
 
     public void forward(){
         Vector velocity = Vector.getVectorFromAngleAndLength(angle, SPEED);
-        if (level.getWall(Vector.add(pos, velocity)).color == null) {
-            pos.add(velocity);
+        if (level.getWall(Vector.add(pos, velocity.getXComponent())).color == null) {
+            pos.add(velocity.getXComponent());
+        }
+        if (level.getWall(Vector.add(pos, velocity.getYComponent())).color == null) {
+            pos.add(velocity.getYComponent());
         }
         
     }
