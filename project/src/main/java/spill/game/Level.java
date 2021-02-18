@@ -1,7 +1,7 @@
 package spill.game;
 
-import javafx.scene.paint.Color;
 import spill.game.util.Vector;
+import spill.storage.LevelLoader;
 
 public class Level {
 
@@ -9,8 +9,7 @@ public class Level {
     private int width;
     private int height;
 
-    private static final Wall Air = new Wall(null);
-    private static final Wall GreenWall = new Wall(Color.GREEN);
+    
     
     //Creates level from an array of walls
     public Level(Wall[][] walls) {
@@ -34,10 +33,10 @@ public class Level {
         height = walls[0].length;
         for (int x = 0; x < walls.length; x++) {
             for (int y = 0; y < walls[0].length; y++) {
-                if (x == 2 || y == 3) {
-                    walls[x][y] = GreenWall;
+                if (x == 0 || x== 19 || y == 0 || y == 19) {
+                    walls[x][y] = Wall.Green;
                 } else {
-                    walls[x][y] = Air;
+                    walls[x][y] = Wall.Air;
                 }
             }
         }
