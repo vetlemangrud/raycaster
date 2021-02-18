@@ -39,8 +39,11 @@ public class Player {
 
     public void backward(){
         Vector velocity = Vector.getVectorFromAngleAndLength(angle, SPEED);
-        if (level.getWall(Vector.sub(pos, velocity)).color == null) {
-            pos.sub(velocity);
+        if (level.getWall(Vector.sub(pos, velocity.getXComponent())).color == null) {
+            pos.sub(velocity.getXComponent());
+        }
+        if (level.getWall(Vector.sub(pos, velocity.getYComponent())).color == null) {
+            pos.sub(velocity.getYComponent());
         }
     }
 
