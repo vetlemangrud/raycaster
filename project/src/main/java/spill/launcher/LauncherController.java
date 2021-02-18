@@ -65,7 +65,7 @@ public class LauncherController {
             } catch (IllegalArgumentException e) {
                 System.err.println("Save with id " + id + " has an invalid name, and is maybe corrupted");
             }
-            ;
+            
         }
     }
 
