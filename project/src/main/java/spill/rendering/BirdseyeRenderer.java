@@ -4,25 +4,30 @@ import spill.game.Level;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import spill.game.GameController;
+import spill.game.Game;
 
 public class BirdseyeRenderer implements Renderer {
     GraphicsContext gc;
-    GameController game;
-    public BirdseyeRenderer(GraphicsContext gc, GameController game) {
+    Game game;
+    double canvasWidth;
+    double canvasHeight;
+
+    public BirdseyeRenderer(GraphicsContext gc, Game gameContext, double canvasWidth, double canvasHeight) {
         this.gc = gc;
-        this.game = game;
+        this.game = gameContext;
+        this.canvasWidth = canvasWidth;
+        this.canvasHeight = canvasHeight;
     }
 
     public void render(){
         gc.save();
-        gc.clearRect(0,0,game.getCanvasWidth(),game.getCanvasHeight());
+        gc.clearRect(0,0,canvasWidth,canvasHeight);
 
         Level level = game.getCurrentLevel();
-        double scaleFactor = Math.min(game.getCanvasWidth()/level.getWidth(), game.getCanvasHeight()/level.getHeight());
+        double scaleFactor = Math.min(canvasWidth/level.getWidth(), canvasHeight/level.getHeight());
         
         //Transform so that drawing between 0 and width/height fo level in the x and y axis fits to canvas
-        gc.translate((game.getCanvasWidth() - level.getWidth() * scaleFactor)/2, (game.getCanvasHeight() - level.getHeight() * scaleFactor)/2);
+        gc.translate((canvasWidth - level.getWidth() * scaleFactor)/2, (canvasHeight - level.getHeight() * scaleFactor)/2);
         gc.scale(scaleFactor, scaleFactor);
 
         //Draw map

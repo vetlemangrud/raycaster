@@ -96,7 +96,7 @@ public class LauncherController {
         int id = Integer.parseInt(((Button) actionEvent.getSource()).getId());
 		Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         stage.setScene(gameScene);
-        gameController.startGame(id);
+        gameController.initializeGame(id);
     }
 
     public void setGameScene(Scene gameScene){

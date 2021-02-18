@@ -19,14 +19,8 @@ import spill.storage.LevelLoader;
 import spill.storage.Storage;
 import spill.storage.StorageInteface;
 
-public class GameController extends AnimationTimer{
-    // TODO: Sette dette i storage, så hver save kan ha egne controls
-    public static final String FORWARDKEY = "W";
-    public static final String BACKKEY = "S";
-    public static final String TURNLEFTKEY = "A";
-    public static final String TURNRIGHTKEY = "D";
-    public static final String MENUKEY = "Esc";
-
+public class GameController{
+    
     @FXML
     private Canvas canvas;
 
@@ -35,28 +29,16 @@ public class GameController extends AnimationTimer{
 
     private Scene launcherScene;
 
-    private Renderer br;
-    private StorageInteface storage;
-    private boolean paused;
-
-    //Game data
-    private Level currentLevel;
-    private Player player;
-    private Collection<String> pressedKeys;
+    private Game game;
 
     @FXML
     private void onKeyPressed(KeyEvent evt){
-        if (evt.getCode().getName() == MENUKEY) {
-            togglePaused();
-        }
-        if (!pressedKeys.contains(evt.getCode().getName())) {
-            pressedKeys.add(evt.getCode().getName());
-        }
+        game.registerKeyPress(evt.getCode().getName());
     }
 
     @FXML
     private void onKeyReleased(KeyEvent evt){
-        pressedKeys.remove(evt.getCode().getName());
+        game.registerKeyRelease(evt.getCode().getName());
     }
 
     @FXML
@@ -71,7 +53,19 @@ public class GameController extends AnimationTimer{
 
     @FXML
     private void onResumeButton(){
-        togglePaused();
+        menuPane.setVisible(false);
+        game.togglePaused();
+    }
+
+    public void openPauseScreen(){
+        menuPane.setVisible(true);
+    }
+
+    public void initializeGame(int storageId){
+        game = new Game(this);
+        game.setStorageId(storageId);
+        Renderer renderer = new BirdseyeRenderer(canvas.getGraphicsContext2D(),game,canvas.getWidth(),canvas.getHeight());
+        game.setRenderer(renderer);
     }
 
 
@@ -87,60 +81,6 @@ public class GameController extends AnimationTimer{
     }
 
     public void startGame(int id){
-        LevelLoader.loadLevel(1);
-        storage = new Storage(id);
-        pressedKeys = new ArrayList<>();
-        br = new BirdseyeRenderer(canvas.getGraphicsContext2D(), this);
-        currentLevel = new Level();
-        player = new Player(currentLevel);
-        paused = false;
-        this.start();
-    }
-
-    @Override
-    public void handle(long now){
-        //Runs every frame
-        if (pressedKeys.contains(FORWARDKEY)) {
-            player.forward();
-        }
-        if (pressedKeys.contains(BACKKEY)) {
-            player.backward();
-        }
-        if (pressedKeys.contains(TURNLEFTKEY)) {
-            player.turnLeft();
-        }
-        if (pressedKeys.contains(TURNRIGHTKEY)) {
-            player.turnRight();
-        }
-
-        br.render();
-    }
-
-    private void togglePaused(){
-        paused = !paused;
-        menuPane.setVisible(paused);
-
-        if (paused) {
-            this.stop();
-        } else {
-            this.start();
-        }
-        
-    }
-
-    public double getCanvasWidth(){
-        return canvas.getWidth();
-    }
-
-    public double getCanvasHeight(){
-        return canvas.getHeight();
-    }
-
-    public Level getCurrentLevel(){
-        return currentLevel;
-    }
-    
-    public Player getPlayer(){
-        return player;
+        game.start();
     }
 }
