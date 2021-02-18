@@ -1,10 +1,9 @@
 package spill.rendering;
 
-import spill.game.Level;
-
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import spill.game.Game;
+import spill.game.Level;
 
 public class BirdseyeRenderer implements Renderer {
     GraphicsContext gc;
