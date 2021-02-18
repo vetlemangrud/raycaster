@@ -19,8 +19,6 @@ public class LevelLoader {
                     System.out.println(scanner.nextLine());
                 }
             }
-        } catch (FileNotFoundException err) {
-            System.err.println(err.getMessage());
         } catch (IOException err) {
             System.err.println(err.getMessage());
         }
