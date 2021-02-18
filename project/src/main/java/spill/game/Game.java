@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import javafx.animation.AnimationTimer;
 import spill.rendering.Renderer;
+import spill.storage.LevelLoader;
 import spill.storage.Storage;
 import spill.storage.StorageInteface;
 
@@ -19,6 +20,7 @@ public class Game extends AnimationTimer{
     private GameController gameController;
     private Renderer renderer;
     private StorageInteface storage;
+    private LevelLoader levelLoader;
     private boolean paused;
 
     //Game data
@@ -28,8 +30,9 @@ public class Game extends AnimationTimer{
 
     public Game(GameController gameController){
         this.gameController = gameController;
+        levelLoader = new LevelLoader();
         pressedKeys = new ArrayList<>();
-        currentLevel = new Level();
+        currentLevel = levelLoader.load(1);
         player = new Player(currentLevel);
         paused = false;
         this.start();
