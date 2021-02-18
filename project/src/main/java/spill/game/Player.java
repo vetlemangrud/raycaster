@@ -42,11 +42,11 @@ public class Player {
     }
 
     public void turnLeft(){
-        angle -= TURNSPEED;
+        angle -= TURNSPEED % 360;
     }
 
     public void turnRight(){
-        angle += TURNSPEED;
+        angle += TURNSPEED % 360;
     }
 
 
