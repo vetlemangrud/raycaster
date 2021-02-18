@@ -1,26 +1,40 @@
 package spill.storage;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOError;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.System.Logger.Level;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
+
+import spill.game.Level;
+import spill.game.Wall;
 
 public class LevelLoader {
     private static final String LEVEL_EXTENSION = "level";
-    private static final String LEVEL_PATH = "../../levels/";
+    private  static Map<Character, Wall> wallCodes; // Thanks baeldung! https://www.baeldung.com/java-initialize-hashmap
+    static {
+        wallCodes = new HashMap<>();
+        wallCodes.put('G', Wall.Green);
+        wallCodes.put(' ', Wall.Air);
+    }
     
-    public static void loadLevel(int number){
-        try (InputStream is = new FileInputStream(LEVEL_PATH + number + "." + LEVEL_EXTENSION)) {
+    public Level load(int number){
+        try (InputStream is = getClass().getResourceAsStream("/levels/"+ number + "." + LEVEL_EXTENSION)) { 
             try (Scanner scanner = new Scanner(is)) {
-                while (scanner.hasNextLine()) {
-                    System.out.println(scanner.nextLine());
+                int width = Integer.parseInt(scanner.nextLine());
+                int height = Integer.parseInt(scanner.nextLine());
+                Wall[][] walls = new Wall[width][height];
+                for (int y = 0; y < height; y++) {
+                    String row = scanner.nextLine();
+                    for (int x = 0; x < height; x++) {
+                        walls[x][y] = wallCodes.get(row.charAt(x));
+                    }
                 }
+                return new Level(walls);
             }
         } catch (IOException err) {
             System.err.println(err.getMessage());
+            return new Level();
         }
     }
 }
