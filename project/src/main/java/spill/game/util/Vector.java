@@ -60,6 +60,14 @@ public class Vector{
         return point.getY();
     }
 
+    public Vector getXComponent(){
+        return new Vector(point.getX(),0);
+    }
+
+    public Vector getYComponent(){
+        return new Vector(0,point.getY());
+    }
+
     public void setX(double x) {
         point = new Point2D(x, getY());
     }
