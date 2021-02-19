@@ -4,7 +4,7 @@ import spill.game.util.Vector;
 
 public class Player {
     public static final double SPEED = 0.05; //Squares per frame
-    public static final double TURNSPEED = 3; //Degrees per frame
+    public static final double TURNSPEED = 0.1; //Radians per frame
 
     private Vector pos;
     private Vector direction;
