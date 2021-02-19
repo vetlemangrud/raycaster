@@ -57,7 +57,7 @@ public class Vector{
     }
 
     public static Vector rotate(Vector a, double angle) {
-        return getVectorFromAngleAndLength((a.getAngle() + angle) % 2*Math.PI, a.getLength());
+        return getVectorFromAngleAndLength(a.getAngle() + angle, a.getLength());
     }
 
     public Vector rotate(double angle){
