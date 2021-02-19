@@ -19,18 +19,18 @@ public class Player {
 
 
     public Vector getPos() {
-        return this.pos;
+        return pos;
     }
 
-    public double getDirection() {
-        return this.direction;
+    public Vector getDirection() {
+        return direction;
     }
 
     public void forward(){
-        if (level.getWall(Vector.add(pos, velocity.getXComponent())).color == null) {
+        if (level.getWall(Vector.add(pos, direction.getXComponent())).color == null) {
             pos.add(direction.getXComponent());
         }
-        if (level.getWall(Vector.add(pos, velocity.getYComponent())).color == null) {
+        if (level.getWall(Vector.add(pos, direction.getYComponent())).color == null) {
             pos.add(direction.getYComponent());
         }
         
