@@ -4,6 +4,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import spill.game.Game;
 import spill.game.Level;
+import spill.game.util.RayCaster;
+import spill.game.util.Vector;
 
 public class BirdseyeRenderer implements Renderer {
     GraphicsContext gc;
@@ -47,6 +49,11 @@ public class BirdseyeRenderer implements Renderer {
         gc.setLineWidth(0.1);
         gc.strokeLine(0, 0, 0.2, 0);
         gc.restore();
+
+        //Draw ray
+        gc.setLineWidth(0.1);
+        Vector closestHorizontal = RayCaster.hitWall(game.getPlayer().getPos(), game.getPlayer().getPos(), level);
+        gc.strokeLine(game.getPlayer().getPos().getX(), game.getPlayer().getPos().getY(), closestHorizontal.getX(), closestHorizontal.getY());
 
         gc.restore();
     }

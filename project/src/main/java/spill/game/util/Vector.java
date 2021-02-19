@@ -89,7 +89,7 @@ public class Vector{
     }
 
     public double getAngle(){
-        return new Point2D(1,0).angle(point);
+        return Math.toDegrees(Math.atan2(point.getY(), point.getX()));
     }
 
     public Vector getXComponent(){

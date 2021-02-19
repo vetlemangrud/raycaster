@@ -19,6 +19,7 @@ public class Player {
 
 
     public Vector getPos() {
+        System.out.println(pos.getX() + " " + pos.getY() + " "+ direction.getAngle());
         return pos;
     }
 
