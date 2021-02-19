@@ -1,7 +1,6 @@
 package spill.game;
 
 import spill.game.util.Vector;
-import spill.storage.LevelLoader;
 
 public class Level {
 
