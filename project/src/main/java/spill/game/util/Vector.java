@@ -11,6 +11,10 @@ public class Vector{
         point = new Point2D(x,y);
     }
 
+    public Vector() {
+        this(0,0);
+    }
+
     public Vector(Point2D point) {
         this.point = point;
     }
