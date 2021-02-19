@@ -66,6 +66,16 @@ public class Vector{
         return c;
     }
 
+    public static Vector normalize(Vector a){
+        return getVectorFromAngleAndLength(a.getAngle(), 1);
+    }
+
+    public Vector normalize(){
+        Vector c = Vector.normalize(this);
+        point = c.point;
+        return c;
+    }
+
     public double getX() {
         return point.getX();
     }
@@ -75,11 +85,11 @@ public class Vector{
     }
 
     public double getLength(){
-        return point.distance(point);
+        return Point2D.ZERO.distance(point);
     }
 
     public double getAngle(){
-        return Point2D.ZERO.angle(point);
+        return new Point2D(1,0).angle(point);
     }
 
     public Vector getXComponent(){
