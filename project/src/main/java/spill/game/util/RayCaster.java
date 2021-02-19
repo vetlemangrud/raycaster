@@ -26,8 +26,8 @@ public class RayCaster {
                 closestY = Math.floor(origin.getY()); 
                 deltaY = -1;
             }
-            deltaHorizontal = new Vector(deltaY * 1/Math.tan(Math.toRadians(direction.getAngle())), deltaY);
-            closestHorizontal = new Vector(closestY * 1/Math.tan(Math.toRadians(direction.getAngle())) + origin.getX(), closestY);
+            deltaHorizontal = new Vector(deltaY * (1/Math.tan(direction.getAngle())), deltaY);
+            closestHorizontal = new Vector(closestY * (1/Math.tan(direction.getAngle())) + origin.getX(), closestY);
         }
         return closestHorizontal;
 
