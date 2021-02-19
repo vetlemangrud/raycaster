@@ -41,7 +41,7 @@ public class BirdseyeRenderer implements Renderer {
         //Draw player
         gc.save();
         gc.translate(game.getPlayer().getPos().getX(), game.getPlayer().getPos().getY());
-        gc.rotate(game.getPlayer().getAngle());
+        gc.rotate(game.getPlayer().getDirection().getAngle());
         gc.setFill(Color.RED);
         gc.fillRoundRect(-0.2, -0.2, 0.4, 0.4, 0.4, 0.4);
         gc.setLineWidth(0.1);
