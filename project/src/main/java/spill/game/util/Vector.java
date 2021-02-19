@@ -20,8 +20,8 @@ public class Vector{
     }
 
     public static Vector getVectorFromAngleAndLength(double angle, double length){
-        double x = length * Math.cos(Math.toRadians(angle));
-        double y = length * Math.sin(Math.toRadians(angle));
+        double x = length * Math.cos(angle);
+        double y = length * Math.sin(angle);
         return new Vector(x,y);
     }
 
@@ -57,7 +57,7 @@ public class Vector{
     }
 
     public static Vector rotate(Vector a, double angle) {
-        return getVectorFromAngleAndLength((a.getAngle() + angle) % 360, a.getLength());
+        return getVectorFromAngleAndLength((a.getAngle() + angle) % 2*Math.PI, a.getLength());
     }
 
     public Vector rotate(double angle){
@@ -89,7 +89,7 @@ public class Vector{
     }
 
     public double getAngle(){
-        return Math.toDegrees(Math.atan2(point.getY(), point.getX()));
+        return (Math.atan2(point.getY(), point.getX()) + 2 * Math.PI) % (2 * Math.PI); //Modulo is so wierd sometimes
     }
 
     public Vector getXComponent(){
