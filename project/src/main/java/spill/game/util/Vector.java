@@ -32,7 +32,7 @@ public class Vector{
     
     public Vector add(Vector b) {
         Vector c = Vector.add(this, b);
-        this.point = c.point;
+        point = c.point;
         return c;
     }
 
@@ -42,7 +42,7 @@ public class Vector{
     
     public Vector sub(Vector b) {
         Vector c = Vector.sub(this, b);
-        this.point = c.point;
+        point = c.point;
         return c;
     }
 
@@ -52,7 +52,17 @@ public class Vector{
 
     public Vector mult(double b) {
         Vector c = Vector.mult(this, b);
-        this.point = c.point;
+        point = c.point;
+        return c;
+    }
+
+    public static Vector rotate(Vector a, double angle) {
+        return getVectorFromAngleAndLength((a.getAngle() + angle) % 360, a.getLength());
+    }
+
+    public Vector rotate(double angle){
+        Vector c = Vector.rotate(this, angle);
+        point = c.point;
         return c;
     }
 
@@ -62,6 +72,14 @@ public class Vector{
 
     public double getY() {
         return point.getY();
+    }
+
+    public double getLength(){
+        return point.distance(point);
+    }
+
+    public double getAngle(){
+        return Point2D.ZERO.angle(point);
     }
 
     public Vector getXComponent(){
