@@ -7,20 +7,14 @@ import spill.game.Level;
 import spill.game.util.RayCaster;
 import spill.game.util.Vector;
 
-public class BirdseyeRenderer implements Renderer {
-    GraphicsContext gc;
-    Game game;
-    double canvasWidth;
-    double canvasHeight;
+public class BirdseyeRenderer extends Renderer {
 
     public BirdseyeRenderer(GraphicsContext gc, Game gameContext, double canvasWidth, double canvasHeight) {
-        this.gc = gc;
-        this.game = gameContext;
-        this.canvasWidth = canvasWidth;
-        this.canvasHeight = canvasHeight;
+        super(gc, gameContext, canvasWidth, canvasHeight);
     }
 
-    public void render(){
+    @Override
+    public void render() {
         gc.save();
         gc.clearRect(0,0,canvasWidth,canvasHeight);
 
