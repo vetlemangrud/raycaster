@@ -37,7 +37,7 @@ public class BirdseyeRenderer extends Renderer {
         //Draw ray
         gc.setLineWidth(0.01);
         for (int i = 0; i < 100; i++) {
-            Vector hit = RayCaster.hitWall(game.getPlayer().getPos(), game.getPlayer().getDirection().copy().rotate(Math.PI/2 * ((double)i)/100 - Math.PI/4), level);
+            Vector hit = RayCaster.hitWall(game.getPlayer().getPos(), game.getPlayer().getDirection().copy().rotate(Math.PI/2 * ((double)i)/100 - Math.PI/4), level).getPosition();
             gc.strokeLine(game.getPlayer().getPos().getX(), game.getPlayer().getPos().getY(), hit.getX(), hit.getY());
         }
 

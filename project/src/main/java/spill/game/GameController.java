@@ -58,7 +58,7 @@ public class GameController{
     public void initializeGame(int storageId){
         game = new Game(this);
         game.setStorageId(storageId);
-        Renderer renderer = new BirdseyeRenderer(canvas.getGraphicsContext2D(),game,canvas.getWidth(),canvas.getHeight());
+        Renderer renderer = new RaycastRenderer(canvas.getGraphicsContext2D(),game,canvas.getWidth(),canvas.getHeight());
         game.setRenderer(renderer);
     }
 

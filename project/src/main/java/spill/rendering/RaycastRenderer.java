@@ -19,8 +19,10 @@ public class RaycastRenderer extends Renderer {
         gc.clearRect(0,0,canvasWidth,canvasHeight);
         gc.setFill(Color.GREEN);
         for (int i = 0; i < RAY_COUNT; i++) {
-            Vector hit = RayCaster.hitWall(game.getPlayer().getPos(), game.getPlayer().getDirection().copy().rotate(FOV * i/RAY_COUNT - FOV/2), game.getCurrentLevel());
-            double lineHeight = canvasHeight/Vector.distance(game.getPlayer().getPos(), hit);
+            Vector hit = RayCaster.hitWall(game.getPlayer().getPos(), game.getPlayer().getDirection().copy().rotate(FOV * i/RAY_COUNT - FOV/2), game.getCurrentLevel()).getPosition();
+            double rayDistance = Vector.distance(game.getPlayer().getPos(), hit);
+            double fisheyeCorrectedDistance = rayDistance * Math.cos(game.getPlayer().getDirection().getAngle() - hit.sub(game.getPlayer().getDirection()).getAngle());
+            double lineHeight = canvasHeight/rayDistance;
             gc.fillRect(canvasWidth * i/RAY_COUNT, canvasHeight/2 - lineHeight/2, canvasWidth/RAY_COUNT, lineHeight);
         }
     }
