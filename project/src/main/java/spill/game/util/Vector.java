@@ -76,6 +76,14 @@ public class Vector{
         return c;
     }
 
+    public static double distance(Vector a, Vector b){
+        return Math.abs(a.copy().sub(b).getLength());
+    }
+
+    public Vector copy(){
+        return new Vector(getX(),getY());
+    }
+
     public double getX() {
         return point.getX();
     }
