@@ -51,7 +51,7 @@ public class BirdseyeRenderer implements Renderer {
         gc.restore();
 
         //Draw ray
-        gc.setLineWidth(0.1);
+        gc.setLineWidth(0.01);
         Vector closestHorizontal = RayCaster.hitWall(game.getPlayer().getPos(), game.getPlayer().getDirection(), level);
         gc.strokeLine(game.getPlayer().getPos().getX(), game.getPlayer().getPos().getY(), closestHorizontal.getX(), closestHorizontal.getY());
 
