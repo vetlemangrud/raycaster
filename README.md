@@ -1,4 +1,4 @@
 # Game
 
-Game made using JavaFX
+Raycaster engine in JavaFX
 
