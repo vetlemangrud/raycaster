@@ -40,6 +40,13 @@ public class BirdseyeRenderer implements Renderer {
             }
         }
 
+        //Draw ray
+        gc.setLineWidth(0.01);
+        for (int i = 0; i < 100; i++) {
+            Vector hit = RayCaster.hitWall(game.getPlayer().getPos(), game.getPlayer().getDirection().copy().rotate(Math.PI/2 * ((double)i)/100 - Math.PI/4), level);
+            gc.strokeLine(game.getPlayer().getPos().getX(), game.getPlayer().getPos().getY(), hit.getX(), hit.getY());
+        }
+
         //Draw player
         gc.save();
         gc.translate(game.getPlayer().getPos().getX(), game.getPlayer().getPos().getY());
@@ -49,11 +56,7 @@ public class BirdseyeRenderer implements Renderer {
         gc.setLineWidth(0.1);
         gc.strokeLine(0, 0, 0.2, 0);
         gc.restore();
-
-        //Draw ray
-        gc.setLineWidth(0.01);
-        Vector closestHorizontal = RayCaster.hitWall(game.getPlayer().getPos(), game.getPlayer().getDirection(), level);
-        gc.strokeLine(game.getPlayer().getPos().getX(), game.getPlayer().getPos().getY(), closestHorizontal.getX(), closestHorizontal.getY());
+        
 
         gc.restore();
     }
