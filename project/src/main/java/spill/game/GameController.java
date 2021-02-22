@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 
 import spill.rendering.Renderer;
 import spill.rendering.BirdseyeRenderer;
+import spill.rendering.RaycastRenderer;
 
 public class GameController{
     
