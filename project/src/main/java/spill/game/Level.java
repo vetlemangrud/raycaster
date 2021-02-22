@@ -46,7 +46,12 @@ public class Level {
     }
 
     public Wall getWall(Vector pos){
-        return walls[(int)Math.floor(pos.getX())][(int)Math.floor(pos.getY())];
+        try {
+            return walls[(int)Math.floor(pos.getX())][(int)Math.floor(pos.getY())];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return Wall.Air;
+        }
+        
     }
 
     public int getWidth(){
