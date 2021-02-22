@@ -33,9 +33,9 @@ public class Level {
         for (int x = 0; x < walls.length; x++) {
             for (int y = 0; y < walls[0].length; y++) {
                 if (x == 0 || x== 19 || y == 0 || y == 19) {
-                    walls[x][y] = Wall.Green;
+                    walls[x][y] = Wall.GREEN;
                 } else {
-                    walls[x][y] = Wall.Air;
+                    walls[x][y] = Wall.AIR;
                 }
             }
         }
@@ -49,7 +49,7 @@ public class Level {
         try {
             return walls[(int)Math.floor(pos.getX())][(int)Math.floor(pos.getY())];
         } catch (ArrayIndexOutOfBoundsException e) {
-            return Wall.Air;
+            return Wall.AIR;
         }
         
     }

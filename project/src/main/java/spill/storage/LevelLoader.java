@@ -14,8 +14,8 @@ public class LevelLoader {
     private  static Map<Character, Wall> wallCodes; // Thanks baeldung! https://www.baeldung.com/java-initialize-hashmap
     static {
         wallCodes = new HashMap<>();
-        wallCodes.put('G', Wall.Green);
-        wallCodes.put(' ', Wall.Air);
+        wallCodes.put('G', Wall.GREEN);
+        wallCodes.put(' ', Wall.AIR);
     }
     
     public Level load(int number){

@@ -4,8 +4,8 @@ import javafx.scene.paint.Color;
 
 public class Wall {
 
-    public static final Wall Air = new Wall(null);
-    public static final Wall Green = new Wall(Color.GREEN);
+    public static final Wall AIR = new Wall(null);
+    public static final Wall GREEN = new Wall(Color.GREEN);
 
     Color color; //Invisible if null
     public Wall(Color color) {
