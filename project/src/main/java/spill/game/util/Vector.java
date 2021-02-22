@@ -80,6 +80,11 @@ public class Vector{
         return Math.abs(a.copy().sub(b).getLength());
     }
 
+    public static double squaredDistance(Vector a, Vector b){
+        //So I can pretend I have optimized code
+        return Math.pow(a.getX()-b.getX(), 2) + Math.pow(a.getY()-b.getY(), 2);
+    }
+
     public Vector copy(){
         return new Vector(getX(),getY());
     }

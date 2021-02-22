@@ -70,7 +70,7 @@ public class RayCaster {
             }
             verticalHit = nextPoint;
         }
-        if (Vector.distance(origin, verticalHit) < Vector.distance(origin, horizontalHit)) {
+        if (Vector.squaredDistance(origin, verticalHit) < Vector.squaredDistance(origin, horizontalHit)) {
             return verticalHit;
         } else {
             return horizontalHit;
