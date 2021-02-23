@@ -15,7 +15,7 @@ public class RayCaster {
         //Check horizontal faces
         if (direction.getAngle() == 0 || direction.getAngle() == Math.PI) {
             //Wont see any horizontal face if looking perpendicular to the y axis
-            horizontalHit = new RayHit(new Vector(0,Double.MAX_VALUE), Wall.AIR, direction.getAngle());
+            horizontalHit = new RayHit(new Vector(0,Double.MAX_VALUE), Wall.AIR, RayHit.NORTH);
         } else {
             double closestY;
             double deltaY;
@@ -39,14 +39,20 @@ public class RayCaster {
                 }
                 linesCrossed++;
             }
-
-            horizontalHit = new RayHit(nextPoint, Wall.GREEN, direction.getAngle());
+            if (direction.getAngle() < Math.PI) {
+                //Looking down
+                horizontalHit = new RayHit(nextPoint, Wall.GREEN, RayHit.NORTH);
+            } else {
+                //Looking up
+                horizontalHit = new RayHit(nextPoint, Wall.GREEN, RayHit.SOUTH);
+            }
+            
         }
 
         //Check vertical faces
         if (direction.getAngle() == Math.PI/4 || direction.getAngle() == Math.PI*6/4) {
             //Wont see any vertical face if looking perpendicular to the x axis
-            verticalHit = new RayHit(new Vector(Double.MAX_VALUE,0), Wall.AIR, direction.getAngle());
+            verticalHit = new RayHit(new Vector(Double.MAX_VALUE,0), Wall.AIR, RayHit.WEST);
         } else {
             double closestX;
             double deltaX;
@@ -70,7 +76,14 @@ public class RayCaster {
                 }
                 linesCrossed++;
             }
-            verticalHit = new RayHit(nextPoint, Wall.GREEN, direction.getAngle());
+
+            if(direction.getAngle() < Math.PI/2 || direction.getAngle() > Math.PI * 3/2){
+                //Looking rigth
+                verticalHit = new RayHit(nextPoint, Wall.GREEN, RayHit.WEST);
+            } else {
+                //Looking left
+                verticalHit = new RayHit(nextPoint, Wall.GREEN, RayHit.WEST);
+            }
         }
 
         if (Vector.squaredDistance(origin, verticalHit.getPosition()) < Vector.squaredDistance(origin, horizontalHit.getPosition())) {

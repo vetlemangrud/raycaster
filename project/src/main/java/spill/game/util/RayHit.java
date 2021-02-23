@@ -4,13 +4,19 @@ import spill.game.Wall;
 
 public class RayHit {
     //Class for giving more information about a ray hit
+
+    public static final int NORTH = 0;
+    public static final int SOUTH = 1;
+    public static final int EAST = 2;
+    public static final int WEST = 3;
+
     private Vector position;
     private Wall wall;
-    private double angle;
-    RayHit(Vector position, Wall wall, double angle){
+    private int face;
+    RayHit(Vector position, Wall wall, int face){
         this.position = position;
         this.wall = wall;
-        this.angle = angle;
+        this.face = face;
     }
 
     public Vector getPosition() {
@@ -21,7 +27,7 @@ public class RayHit {
         return this.wall;
     }
 
-    public double getAngle() {
-        return this.angle;
+    public int getFace() {
+        return this.face;
     }
 }
