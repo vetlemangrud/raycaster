@@ -37,7 +37,7 @@ public class LauncherController {
     private GameController gameController;
 
     @FXML
-    private void createNewSaveButtonAction(ActionEvent evt) {
+    private void createNewSaveAction(ActionEvent evt) {
         try {
             String saveName = validateSaveName(saveNameTextField.getText());
             int[] usedIds = Storage.getAllUsedIds();
