@@ -17,6 +17,12 @@ public class Player {
         direction = new Vector(SPEED, 0);
     }
 
+    public Player(Level level, double startX, double startY, double startAngle){
+        this.level = level;
+        pos = new Vector(startX, startY);
+        direction = Vector.getVectorFromAngleAndLength(startAngle, SPEED);
+    }
+
 
     public Vector getPos() {
         return pos;
