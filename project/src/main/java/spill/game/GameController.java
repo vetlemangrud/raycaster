@@ -36,8 +36,9 @@ public class GameController{
     }
 
     @FXML
-    private void onSaveAndQuitButton(){
-        System.out.println("Quit");
+    private void onSaveAndQuitButton(ActionEvent evt){
+        game.saveState();
+        openLauncherScene(evt);
     }
 
     @FXML
@@ -56,10 +57,12 @@ public class GameController{
     }
 
     public void initializeGame(int storageId){
+        menuPane.setVisible(false);
         game = new Game(this);
         game.setStorageId(storageId);
         Renderer renderer = new RaycastRenderer(canvas.getGraphicsContext2D(),game,canvas.getWidth(),canvas.getHeight());
         game.setRenderer(renderer);
+        game.loadState();
     }
 
 

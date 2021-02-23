@@ -71,6 +71,27 @@ public class Game extends AnimationTimer{
         storage = new Storage(id);
     }
 
+    public void saveState() {
+        try {
+            storage.writeSave("PLAYER_X", String.valueOf(player.getPos().getX()));
+            storage.writeSave("PLAYER_Y", String.valueOf(player.getPos().getY()));
+            storage.writeSave("PLAYER_ANGLE", String.valueOf(player.getDirection().getAngle()));
+        } catch (Exception e) {
+            System.out.println("Could not save game: " + e.getMessage());
+        }
+    }
+
+    public void loadState() {
+        try {
+            double x = Double.parseDouble(storage.readSave("PLAYER_X"));
+            double y = Double.parseDouble(storage.readSave("PLAYER_Y"));
+            double angle = Double.parseDouble(storage.readSave("PLAYER_ANGLE"));
+            player = new Player(currentLevel, x, y, angle);
+        } catch (Exception e) {
+            System.out.println("Could not load game: " + e.getMessage());
+        }
+    }
+
     public void setRenderer(Renderer renderer){
         this.renderer = renderer;
     }
