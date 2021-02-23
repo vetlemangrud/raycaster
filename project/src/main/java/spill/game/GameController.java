@@ -56,6 +56,10 @@ public class GameController{
         menuPane.setVisible(true);
     }
 
+    public void closePauseScreen(){
+        menuPane.setVisible(false);
+    }
+
     public void initializeGame(int storageId){
         menuPane.setVisible(false);
         game = new Game(this);

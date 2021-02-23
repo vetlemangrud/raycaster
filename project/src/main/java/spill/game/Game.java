@@ -64,6 +64,7 @@ public class Game extends AnimationTimer{
             gameController.openPauseScreen();
             this.stop();
         } else {
+            gameController.closePauseScreen();
             this.start();
         }
     }
