@@ -17,10 +17,11 @@ public class Player {
         direction = new Vector(SPEED, 0);
     }
 
-    public Player(Level level, double startX, double startY, double startAngle){
+    public Player(Level level, double x, double y, double angle){
+        //For when a player position is saved
         this.level = level;
-        pos = new Vector(startX, startY);
-        direction = Vector.getVectorFromAngleAndLength(startAngle, SPEED);
+        pos = new Vector(x, y);
+        direction = Vector.getVectorFromAngleAndLength(angle, SPEED);
     }
 
 
