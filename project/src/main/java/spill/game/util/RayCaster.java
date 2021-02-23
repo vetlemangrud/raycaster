@@ -41,10 +41,10 @@ public class RayCaster {
             }
             if (direction.getAngle() < Math.PI) {
                 //Looking down
-                horizontalHit = new RayHit(nextPoint, Wall.GREEN, RayHit.NORTH);
+                horizontalHit = new RayHit(nextPoint, level.getWall(Vector.add(nextPoint,new Vector(0,0.1))), RayHit.NORTH);
             } else {
                 //Looking up
-                horizontalHit = new RayHit(nextPoint, Wall.GREEN, RayHit.SOUTH);
+                horizontalHit = new RayHit(nextPoint, level.getWall(Vector.add(nextPoint,new Vector(0,-0.1))), RayHit.SOUTH);
             }
             
         }
@@ -79,10 +79,10 @@ public class RayCaster {
 
             if(direction.getAngle() < Math.PI/2 || direction.getAngle() > Math.PI * 3/2){
                 //Looking rigth
-                verticalHit = new RayHit(nextPoint, Wall.GREEN, RayHit.WEST);
+                verticalHit = new RayHit(nextPoint, level.getWall(Vector.add(nextPoint,new Vector(0.1,0))), RayHit.WEST);
             } else {
                 //Looking left
-                verticalHit = new RayHit(nextPoint, Wall.GREEN, RayHit.WEST);
+                verticalHit = new RayHit(nextPoint, level.getWall(Vector.add(nextPoint,new Vector(-0.1,0))), RayHit.WEST);
             }
         }
 

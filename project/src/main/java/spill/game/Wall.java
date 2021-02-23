@@ -6,6 +6,7 @@ public class Wall {
 
     public static final Wall AIR = new Wall(null);
     public static final Wall GREEN = new Wall(Color.GREEN);
+    public static final Wall BLUE = new Wall(Color.BLUE);
 
     Color color; //Invisible if null
     public Wall(Color color) {
