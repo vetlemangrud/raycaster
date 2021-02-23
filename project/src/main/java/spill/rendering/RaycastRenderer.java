@@ -9,8 +9,8 @@ import spill.game.util.RayHit;
 import spill.game.util.Vector;
 
 public class RaycastRenderer extends Renderer {
-    private static final int RAY_COUNT = 200;
-    private static final double FOV = Math.PI/6;
+    private static final int RAY_COUNT = 800;
+    private static final double FOV = Math.PI/2;
     
     public RaycastRenderer(GraphicsContext gc, Game gameContext, double canvasWidth, double canvasHeight) {
         super(gc, gameContext, canvasWidth, canvasHeight);
