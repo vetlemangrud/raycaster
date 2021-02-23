@@ -80,8 +80,4 @@ public class GameController{
     public void setLauncherScene(Scene launcherScene){
         this.launcherScene = launcherScene;
     }
-
-    public void startGame(int id){
-        game.start();
-    }
 }

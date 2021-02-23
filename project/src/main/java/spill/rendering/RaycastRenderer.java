@@ -1,7 +1,6 @@
 package spill.rendering;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.effect.Effect;
 import javafx.scene.paint.Color;
 import spill.game.Game;
 import spill.game.util.RayCaster;
