@@ -20,7 +20,8 @@ public class RaycastRenderer extends Renderer {
     public void render() {
         gc.clearRect(0,0,canvasWidth,canvasHeight);
         
-       
+        drawFloorAndRoof();
+
         for (int i = 0; i < RAY_COUNT; i++) {
             RayHit hit = RayCaster.hitWall(game.getPlayer().getPos(), game.getPlayer().getDirection().copy().rotate(FOV * i/RAY_COUNT - FOV/2), game.getCurrentLevel());
             double rayDistance = Vector.distance(game.getPlayer().getPos(), hit.getPosition());
@@ -35,5 +36,12 @@ public class RaycastRenderer extends Renderer {
             
             gc.fillRect(canvasWidth * i/RAY_COUNT, canvasHeight/2 - lineHeight/2, canvasWidth/RAY_COUNT, lineHeight);
         }
+    }
+
+    private void drawFloorAndRoof(){
+        gc.setFill(Color.GRAY);
+        gc.fillRect(0, 0, canvasWidth, canvasHeight/2);
+        gc.setFill(Color.BROWN);
+        gc.fillRect(0, canvasHeight/2, canvasWidth, canvasHeight/2);
     }
 }
