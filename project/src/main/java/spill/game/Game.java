@@ -89,7 +89,7 @@ public class Game extends AnimationTimer{
             double angle = Double.parseDouble(storage.readSave("PLAYER_ANGLE"));
             player = new Player(currentLevel, x, y, angle);
         } catch (Exception e) {
-            System.out.println("Previous player position not found");
+            System.out.println("Previous player position not found or is corrupted");
         }
     }
 
