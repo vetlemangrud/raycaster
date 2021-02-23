@@ -15,6 +15,7 @@ import spill.storage.Storage;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 import java.util.regex.Pattern;
 
 import javafx.event.ActionEvent;
@@ -40,7 +41,14 @@ public class LauncherController {
         try {
             String saveName = validateSaveName(saveNameTextField.getText());
             int[] usedIds = Storage.getAllUsedIds();
-            int saveId = Arrays.stream(usedIds).max().getAsInt() + 1;
+            int saveId = 1;
+            try {
+                saveId = Arrays.stream(usedIds).max().getAsInt() + 1;
+            } catch (NoSuchElementException e) {
+                //If no previous saves exist
+                System.out.println("Creating first save");
+            }
+            
             Storage newSaveStorage = new Storage(saveId);
             try {
                 newSaveStorage.writeSave("NAME", saveName);
