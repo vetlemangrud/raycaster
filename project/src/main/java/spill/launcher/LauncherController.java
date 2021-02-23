@@ -38,6 +38,7 @@ public class LauncherController {
 
     @FXML
     private void createNewSaveAction(ActionEvent evt) {
+        
         try {
             String saveName = validateSaveName(saveNameTextField.getText());
             int[] usedIds = Storage.getAllUsedIds();
@@ -56,6 +57,7 @@ public class LauncherController {
             } catch (IOException e) {
                 System.err.println("Saving error");
             }
+            saveNameTextField.clear();
         } catch (IllegalArgumentException e) {
             errorText.setText(e.getMessage());
             errorText.setVisible(true);
@@ -72,6 +74,8 @@ public class LauncherController {
                 addStartSaveButton(validateSaveName(idStorage.readSave("NAME")), id);
             } catch (IllegalArgumentException e) {
                 System.err.println("Save with id " + id + " has an invalid name, and is maybe corrupted");
+            } catch (NullPointerException e) {
+                System.err.println("Save with id " + id + " has no name, and is maybe corrupted");
             }
             
         }
