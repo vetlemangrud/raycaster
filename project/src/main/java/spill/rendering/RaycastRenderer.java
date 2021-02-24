@@ -27,7 +27,7 @@ public class RaycastRenderer extends Renderer {
             double fisheyeCorrectedDistance = rayDistance * Math.cos(game.getPlayer().getDirection().getAngle() - Vector.sub(hit.getPosition(), game.getPlayer().getPos()).getAngle());
             double lineHeight = canvasHeight/fisheyeCorrectedDistance;
 
-            if (hit.getFace() == RayHit.EAST || hit.getFace() == RayHit.WEST) {
+            if (hit.getFace() == Vector.EAST || hit.getFace() == Vector.WEST) {
                 gc.setFill(hit.getWall().getColor());
             } else {
                 gc.setFill(hit.getWall().getColor().deriveColor(0, 1, 0.5, 1));

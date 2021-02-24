@@ -15,7 +15,7 @@ public class RayCaster {
         //Check horizontal faces
         if (direction.getAngle() == 0 || direction.getAngle() == Math.PI) {
             //Wont see any horizontal face if looking perpendicular to the y axis
-            horizontalHit = new RayHit(new Vector(0,Double.MAX_VALUE), Wall.AIR, RayHit.NORTH);
+            horizontalHit = new RayHit(new Vector(0,Double.MAX_VALUE), Wall.AIR, Vector.NORTH);
         } else {
             double closestY;
             double deltaY;
@@ -41,10 +41,10 @@ public class RayCaster {
             }
             if (direction.getAngle() < Math.PI) {
                 //Looking down
-                horizontalHit = new RayHit(nextPoint, level.getWall(Vector.add(nextPoint,new Vector(0,0.1))), RayHit.NORTH);
+                horizontalHit = new RayHit(nextPoint, level.getWall(Vector.add(nextPoint,new Vector(0,0.1))), Vector.NORTH);
             } else {
                 //Looking up
-                horizontalHit = new RayHit(nextPoint, level.getWall(Vector.add(nextPoint,new Vector(0,-0.1))), RayHit.SOUTH);
+                horizontalHit = new RayHit(nextPoint, level.getWall(Vector.add(nextPoint,new Vector(0,-0.1))), Vector.SOUTH);
             }
             
         }
@@ -52,7 +52,7 @@ public class RayCaster {
         //Check vertical faces
         if (direction.getAngle() == Math.PI/4 || direction.getAngle() == Math.PI*6/4) {
             //Wont see any vertical face if looking perpendicular to the x axis
-            verticalHit = new RayHit(new Vector(Double.MAX_VALUE,0), Wall.AIR, RayHit.WEST);
+            verticalHit = new RayHit(new Vector(Double.MAX_VALUE,0), Wall.AIR, Vector.WEST);
         } else {
             double closestX;
             double deltaX;
@@ -79,10 +79,10 @@ public class RayCaster {
 
             if(direction.getAngle() < Math.PI/2 || direction.getAngle() > Math.PI * 3/2){
                 //Looking rigth
-                verticalHit = new RayHit(nextPoint, level.getWall(Vector.add(nextPoint,new Vector(0.1,0))), RayHit.WEST);
+                verticalHit = new RayHit(nextPoint, level.getWall(Vector.add(nextPoint,new Vector(0.1,0))), Vector.WEST);
             } else {
                 //Looking left
-                verticalHit = new RayHit(nextPoint, level.getWall(Vector.add(nextPoint,new Vector(-0.1,0))), RayHit.WEST);
+                verticalHit = new RayHit(nextPoint, level.getWall(Vector.add(nextPoint,new Vector(-0.1,0))), Vector.WEST);
             }
         }
 

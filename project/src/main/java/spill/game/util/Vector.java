@@ -6,6 +6,11 @@ public class Vector{
     //Point2D works well, but i wanted something more like Vectors in Processing
     //Vector is basically just a wrapper around Point2D
 
+    public static final Vector NORTH = new Vector(0,-1);
+    public static final Vector SOUTH = new Vector(0,1);
+    public static final Vector EAST = new Vector(1,0);
+    public static final Vector WEST = new Vector(-1, 0);
+
     private Point2D point;
     public Vector(double x, double y) {
         point = new Point2D(x,y);
