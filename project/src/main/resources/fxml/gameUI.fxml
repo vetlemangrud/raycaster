@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="spill.game.GameController">
+<StackPane prefHeight="463.0" prefWidth="566.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="spill.game.GameController">
    <children>
       <Canvas fx:id="canvas" focusTraversable="true" height="600.0" onKeyPressed="#onKeyPressed" onKeyReleased="#onKeyReleased" width="800.0" />
       <Pane id="menuPane" fx:id="menuPane" maxHeight="200.0" maxWidth="400.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgba(0,0,0,0.3); -fx-border-color: #000000; -fx-border-width: 2;" visible="false">
@@ -20,6 +20,16 @@
             <Button focusTraversable="false" layoutX="91.0" layoutY="101.0" mnemonicParsing="false" onAction="#onResumeButton" prefHeight="37.0" prefWidth="103.0" style="-fx-background-color: #000000;" text="Resume" textFill="WHITE" />
             <Button focusTraversable="false" layoutX="206.0" layoutY="101.0" mnemonicParsing="false" onAction="#onSettingsButton" prefHeight="37.0" prefWidth="103.0" style="-fx-background-color: #000000;" text="Settings" textFill="WHITE" />
             <Button focusTraversable="false" layoutX="91.0" layoutY="149.0" mnemonicParsing="false" onAction="#onSaveAndQuitButton" prefHeight="37.0" prefWidth="217.0" style="-fx-background-color: #000000;" text="Save and Quit" textFill="WHITE" />
+         </children>
+      </Pane>
+      <Pane id="settingsPane" maxHeight="400.0" maxWidth="400.0" prefHeight="394.0" prefWidth="800.0" style="-fx-background-color: rgba(0,0,0,0.3); -fx-border-color: #000000; -fx-border-width: 2;" visible="false">
+         <children>
+            <Button focusTraversable="false" layoutX="92.0" layoutY="340.0" mnemonicParsing="false" onAction="#onSaveAndQuitButton" prefHeight="37.0" prefWidth="217.0" style="-fx-background-color: #000000;" text="Back" textFill="WHITE" />
+            <Text layoutX="114.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SETTINGS">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Text>
          </children>
       </Pane>
    </children>
