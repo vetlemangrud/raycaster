@@ -82,7 +82,7 @@ public class RayCaster {
                 verticalHit = new RayHit(nextPoint, level.getWall(Vector.add(nextPoint,new Vector(0.1,0))), Vector.WEST);
             } else {
                 //Looking left
-                verticalHit = new RayHit(nextPoint, level.getWall(Vector.add(nextPoint,new Vector(-0.1,0))), Vector.WEST);
+                verticalHit = new RayHit(nextPoint, level.getWall(Vector.add(nextPoint,new Vector(-0.1,0))), Vector.EAST);
             }
         }
 
