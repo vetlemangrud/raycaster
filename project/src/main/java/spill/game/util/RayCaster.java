@@ -10,7 +10,7 @@ public class RayCaster {
     
     public static RayHit hitWall(Vector origin, Vector direction, Level level){
         RayHit horizontalHit = hitHorizontalWall(origin, direction, level); //Point where ray hits a wall (Just checking horizontal walls) (Global position)
-        RayHit verticalHit = hitHorizontalWall(origin, direction, level); //Point where ray hits a wall (Just checking vertical walls) (Global position)
+        RayHit verticalHit = hitVerticalWall(origin, direction, level); //Point where ray hits a wall (Just checking vertical walls) (Global position)
         
         //Return the closest hit
         if (Vector.squaredDistance(origin, verticalHit.getPosition()) < Vector.squaredDistance(origin, horizontalHit.getPosition())) {
