@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -14,9 +15,13 @@ import spill.rendering.BirdseyeRenderer;
 import spill.rendering.RaycastRenderer;
 
 public class GameController{
+    private static final boolean USE_RAYCAST_RENDERER = true;
     
     @FXML
     private Canvas canvas;
+
+    @FXML
+    private ImageView gameImageView;
 
     @FXML
     private Pane menuPane;
@@ -62,11 +67,22 @@ public class GameController{
 
     public void initializeGame(int storageId){
         menuPane.setVisible(false);
+
         game = new Game(this);
         game.setStorageId(storageId);
-        Renderer renderer = new RaycastRenderer(canvas.getGraphicsContext2D(),game,canvas.getWidth(),canvas.getHeight());
-        game.setRenderer(renderer);
         game.loadState();
+
+        Renderer renderer;
+        if (USE_RAYCAST_RENDERER) {
+            renderer = new RaycastRenderer(canvas.getGraphicsContext2D(),game,gameImageView ,canvas.getWidth(),canvas.getHeight());
+        } else {
+            renderer = new BirdseyeRenderer(canvas.getGraphicsContext2D(),game,canvas.getWidth(),canvas.getHeight());
+        }
+        
+        
+        game.setRenderer(renderer);
+
+        
     }
 
 

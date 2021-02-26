@@ -2,6 +2,7 @@
 
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
@@ -10,6 +11,7 @@
 <StackPane prefHeight="463.0" prefWidth="566.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="spill.game.GameController">
    <children>
       <Canvas fx:id="canvas" focusTraversable="true" height="600.0" onKeyPressed="#onKeyPressed" onKeyReleased="#onKeyReleased" width="800.0" />
+      <ImageView id="gameImageView" fx:id="gameImageView" fitHeight="600.0" fitWidth="800.0" onKeyPressed="#onKeyPressed" onKeyReleased="#onKeyReleased" pickOnBounds="true" preserveRatio="true" />
       <Pane id="menuPane" fx:id="menuPane" maxHeight="200.0" maxWidth="400.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgba(0,0,0,0.3); -fx-border-color: #000000; -fx-border-width: 2;" visible="false">
          <children>
             <Text layoutX="127.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PAUSED">
