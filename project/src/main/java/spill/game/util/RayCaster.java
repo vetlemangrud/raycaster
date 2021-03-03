@@ -83,7 +83,7 @@ public class RayCaster {
 
         double linesCrossed = 0;
         while (linesCrossed < DEPTH_OF_FIELD) {
-            if (level.getWall(Vector.add(nextPoint,new Vector(-0.1,0))).getColor(0,0) == null && level.getWall(Vector.add(nextPoint,new Vector(0.1,0))).getColor(0,0) == null) {
+            if (!level.getWall(Vector.add(nextPoint,new Vector(-0.1,0))).isSolid() && !level.getWall(Vector.add(nextPoint,new Vector(0.1,0))).isSolid()) {
                 nextPoint.add(deltaVertical);
             }
             linesCrossed++;

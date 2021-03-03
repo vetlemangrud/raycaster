@@ -13,7 +13,11 @@ public class Wall {
     Image texture;
     public Wall(Color color) {
         this.color = color;
-        //texture = new Image(getClass().getResourceAsStream("/icon.png"));
+        texture = new Image(getClass().getResourceAsStream("/textures/benk.png"));
+    }
+
+    public boolean isSolid(){
+        return this.color != null;
     }
 
     public Color getColor(double x, double y){
