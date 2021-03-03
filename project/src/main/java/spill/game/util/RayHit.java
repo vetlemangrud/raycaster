@@ -10,10 +10,12 @@ public class RayHit {
     private Vector position;
     private Wall wall;
     private Vector face;
-    RayHit(Vector position, Wall wall, Vector face){
+    private double wallX;
+    RayHit(Vector position, Wall wall, Vector face, double wallX){
         this.position = position;
         this.wall = wall;
         this.face = face;
+        this.wallX = wallX;
     }
 
     public Vector getPosition() {
@@ -26,5 +28,9 @@ public class RayHit {
 
     public Vector getFace() {
         return this.face;
+    }
+
+    public double getWallX() {
+        return this.wallX;
     }
 }

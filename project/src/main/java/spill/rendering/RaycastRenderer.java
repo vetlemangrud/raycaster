@@ -61,14 +61,16 @@ public class RaycastRenderer extends Renderer {
             double fisheyeCorrectedDistance = rayDistance * Math.cos(game.getPlayer().getDirection().getAngle() - Vector.sub(hit.getPosition(), game.getPlayer().getPos()).getAngle());
             double lineHeight = canvasHeight/fisheyeCorrectedDistance;
             
+            double yOffset = 0;
             if (lineHeight > canvasHeight) {
+                yOffset = lineHeight/2 - canvasHeight/2;
                 lineHeight = canvasHeight;
             }
 
             for (int y = 0; y < lineHeight; y++) {
                 double pointX = screenX;
                 double pointY = canvasHeight/2 - lineHeight/2 + y;
-                currentPixelWriter.setColor((int)pointX, (int)pointY, hit.getWall().getColor(0,0));
+                currentPixelWriter.setColor((int)pointX, (int)pointY, hit.getWall().getColor(hit.getWallX(),(y+yOffset)/(lineHeight+ 2*yOffset)));
                 
             }
         }

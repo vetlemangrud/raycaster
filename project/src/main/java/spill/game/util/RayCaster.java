@@ -24,7 +24,7 @@ public class RayCaster {
         //Check horizontal faces
         if (direction.getAngle() == 0 || direction.getAngle() == Math.PI) {
             //Wont see any horizontal face if looking perpendicular to the y axis
-            return new RayHit(new Vector(0,Double.MAX_VALUE), Wall.AIR, Vector.NORTH);
+            return new RayHit(new Vector(0,Double.MAX_VALUE), Wall.AIR, Vector.NORTH, 0);
         }
         double closestY;
         double deltaY;
@@ -43,17 +43,19 @@ public class RayCaster {
 
         double linesCrossed = 0;
         while (linesCrossed < DEPTH_OF_FIELD) {
-            if (level.getWall(Vector.add(nextPoint,new Vector(0,-0.1))).getColor(0,0) == null && level.getWall(Vector.add(nextPoint,new Vector(0,0.1))).getColor(0,0) == null) {
+            if (!level.getWall(Vector.add(nextPoint,new Vector(0,-0.1))).isSolid() && !level.getWall(Vector.add(nextPoint,new Vector(0,0.1))).isSolid()) {
                 nextPoint.add(deltaHorizontal);
             }
             linesCrossed++;
         }
         if (direction.getAngle() < Math.PI) {
             //Looking down
-            return new RayHit(nextPoint, level.getWall(Vector.add(nextPoint,new Vector(0,0.1))), Vector.NORTH);
+            double wallX = - nextPoint.getX() % 1 + 1; //Where the ray hits on the wall
+            return new RayHit(nextPoint, level.getWall(Vector.add(nextPoint,new Vector(0,0.1))), Vector.NORTH, wallX);
         } else {
             //Looking up
-            return new RayHit(nextPoint, level.getWall(Vector.add(nextPoint,new Vector(0,-0.1))), Vector.SOUTH);
+            double wallX = nextPoint.getX() % 1; //Where the ray hits on the wall
+            return new RayHit(nextPoint, level.getWall(Vector.add(nextPoint,new Vector(0,-0.1))), Vector.SOUTH, wallX);
         }
             
         
@@ -63,7 +65,7 @@ public class RayCaster {
         //Check vertical faces
         if (direction.getAngle() == Math.PI/4 || direction.getAngle() == Math.PI*6/4) {
             //Wont see any vertical face if looking perpendicular to the x axis
-            return new RayHit(new Vector(Double.MAX_VALUE,0), Wall.AIR, Vector.WEST);
+            return new RayHit(new Vector(Double.MAX_VALUE,0), Wall.AIR, Vector.WEST, 0);
         }
 
         double closestX;
@@ -91,10 +93,12 @@ public class RayCaster {
 
         if(direction.getAngle() < Math.PI/2 || direction.getAngle() > Math.PI * 3/2){
             //Looking rigth
-            return new RayHit(nextPoint, level.getWall(Vector.add(nextPoint,new Vector(0.1,0))), Vector.WEST);
+            double wallX = nextPoint.getY() % 1; //Where the ray hits on the wall
+            return new RayHit(nextPoint, level.getWall(Vector.add(nextPoint,new Vector(0.1,0))), Vector.WEST, wallX);
         } else {
             //Looking left
-            return new RayHit(nextPoint, level.getWall(Vector.add(nextPoint,new Vector(-0.1,0))), Vector.EAST);
+            double wallX = - nextPoint.getY() % 1 + 1; //Where the ray hits on the wall
+            return new RayHit(nextPoint, level.getWall(Vector.add(nextPoint,new Vector(-0.1,0))), Vector.EAST, wallX);
         }
         
     }

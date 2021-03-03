@@ -1,6 +1,7 @@
 package spill.game;
 
 import javafx.scene.image.Image;
+import javafx.scene.image.PixelReader;
 import javafx.scene.paint.Color;
 
 public class Wall {
@@ -11,9 +12,11 @@ public class Wall {
 
     Color color; //Invisible if null
     Image texture;
+    PixelReader pixelReader;
     public Wall(Color color) {
         this.color = color;
         texture = new Image(getClass().getResourceAsStream("/textures/benk.png"));
+        pixelReader = texture.getPixelReader();
     }
 
     public boolean isSolid(){
@@ -21,7 +24,8 @@ public class Wall {
     }
 
     public Color getColor(double x, double y){
-        return color;
+        return pixelReader.getColor((int) (x * texture.getWidth()), (int) (y*texture.getHeight()));
+        //return color.deriveColor(x * 255, 1, 1, 1);
     }
 
 }
