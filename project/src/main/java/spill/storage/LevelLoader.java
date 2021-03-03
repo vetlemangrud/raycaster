@@ -16,6 +16,8 @@ public class LevelLoader {
         wallCodes = new HashMap<>();
         wallCodes.put('G', Wall.GREEN);
         wallCodes.put('B', Wall.BLUE);
+        wallCodes.put('b', Wall.BRICK);
+        wallCodes.put('v', Wall.VINES);
         wallCodes.put(' ', Wall.AIR);
     }
     
