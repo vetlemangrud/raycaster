@@ -1,5 +1,6 @@
 package spill.game;
 
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
 public class Wall {
@@ -9,13 +10,15 @@ public class Wall {
     public static final Wall BLUE = new Wall(Color.BLUE);
 
     Color color; //Invisible if null
+    Image texture;
     public Wall(Color color) {
         this.color = color;
+        //texture = new Image(getClass().getResourceAsStream("/icon.png"));
     }
 
-    public Color getColor(){
+    public Color getColor(double x, double y){
         return color;
-    } 
+    }
 
 }
 
