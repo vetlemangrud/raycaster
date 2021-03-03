@@ -29,7 +29,7 @@ public class BirdseyeRenderer extends Renderer {
         for (int x = 0; x < level.getWidth(); x++) {
             for (int y = 0; y < level.getHeight(); y++) {
                 gc.setFill(Color.WHITE);
-                gc.setFill(level.getWall(x, y).getColor());
+                gc.setFill(level.getWall(x, y).getColor(0,0));
                 gc.fillRect(x, y, 1, 1);
             }
         }
