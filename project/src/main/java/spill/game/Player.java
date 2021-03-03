@@ -34,10 +34,10 @@ public class Player {
     }
 
     public void forward(){
-        if (level.getWall(Vector.add(pos, direction.getXComponent())).color == null) {
+        if (!level.getWall(Vector.add(pos, direction.getXComponent().mult(5))).isSolid()) {
             pos.add(direction.getXComponent());
         }
-        if (level.getWall(Vector.add(pos, direction.getYComponent())).color == null) {
+        if (!level.getWall(Vector.add(pos, direction.getYComponent().mult(5))).isSolid()) {
             pos.add(direction.getYComponent());
         }
         
