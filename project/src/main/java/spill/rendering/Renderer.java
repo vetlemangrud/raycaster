@@ -1,6 +1,7 @@
 package spill.rendering;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.ImageView;
 import spill.game.Game;
 
 public abstract class Renderer {
@@ -8,6 +9,7 @@ public abstract class Renderer {
     Game game;
     double canvasWidth;
     double canvasHeight;
+    
 
     public Renderer(GraphicsContext gc, Game gameContext, double canvasWidth, double canvasHeight) {
         this.gc = gc;
