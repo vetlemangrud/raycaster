@@ -15,12 +15,12 @@ public class Wall {
     public static final Wall BRICK = new Wall("brick");
     public static final Wall VINES = new Wall("vines");
 
-    Color color; //Invisible if null
-    Color darkerColor; //Performance seemed to drop significantly when modifying colors on the fly
-    Image texture;
-    PixelReader pixelReader;
-    WritableImage darkerTexture;
-    PixelReader darkerReader;
+    private Color color; //Invisible if null
+    private Color darkerColor; //Performance seemed to drop significantly when modifying colors on the fly
+    private Image texture;
+    private PixelReader pixelReader;
+    private WritableImage darkerTexture;
+    private PixelReader darkerReader;
     public Wall(Color color) {
         this.color = color;
         if (color != null) {
