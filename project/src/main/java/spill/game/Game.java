@@ -23,6 +23,9 @@ public class Game extends AnimationTimer{
     private LevelLoader levelLoader;
     private boolean paused;
 
+    private double deltaTime; //Time between frames (So we can have speed per time instead of speed per frame. The frames are not necessarly equally spaced)
+    private long lastFrameTime;
+
     //Game data
     private Level currentLevel;
     private Player player;
@@ -35,11 +38,15 @@ public class Game extends AnimationTimer{
         currentLevel = levelLoader.load(1);
         player = new Player(currentLevel);
         paused = false;
+        lastFrameTime = 0;
         this.start();
     }
 
     @Override
     public void handle(long now){
+        deltaTime = (double) (now - lastFrameTime);
+        lastFrameTime = now;
+        System.out.println("FPS: " + (int) (1/(deltaTime/1000000000)));
         //Runs every frame
         if (pressedKeys.contains(FORWARDKEY)) {
             player.forward();
