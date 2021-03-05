@@ -71,7 +71,7 @@ public class RaycastRenderer extends Renderer {
                 double screenY = canvasHeight/2 - lineHeight/2 + y;
                 Color pixelColor = hit.getWall().getColor(hit.getWallX(),(y+yOffset)/(lineHeight+ 2*yOffset));
                 if (hit.getFace() == Vector.NORTH || hit.getFace() == Vector.SOUTH) {
-                    pixelColor = hit.getWall().getColor(hit.getWallX(),(y+yOffset)/(lineHeight+ 2*yOffset));
+                    pixelColor = hit.getWall().getDarkerColor(hit.getWallX(),(y+yOffset)/(lineHeight+ 2*yOffset));
                 }
                 currentPixelWriter.setColor((int)screenX, (int)screenY, pixelColor);
                 
