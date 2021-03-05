@@ -21,7 +21,7 @@ Most of the code i wrote myself, but i drew a lot of inspiration and got most of
 - The app needs a system to save and load from a file.
     - The app reads save state and puts it in a cache when the game is started, and saves the cache to a file when the game is exited (Via the menu). There is also a system to load levels.
 - There should be error handling where appropriate
-    - Errors mostly just print to the terminal, but default options save the app from crashing.
+    - Most of the errors come from invalid user input or problems with save data (user tampering and invalid save locations are example causes). Error handling is implemented to detect these errors and either abort an action (ex. save won't be created if user types an invalid save name. Broken save files are not shown), or perform a fix (ex. If player has no saved position, it will default to a starting location). This will stop the program from crashing
 - The app has to be tested with JUnit tests
     - TA agreed that testing every part of the app (Especially the rendering) is a lot of work, and I got away with testing some classes. I have focused on testing the utility classes and storage.
 
