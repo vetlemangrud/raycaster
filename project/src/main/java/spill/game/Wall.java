@@ -48,18 +48,23 @@ public class Wall {
     }
 
     public Color getColor(double x, double y) {
-        if (color == null) {
+        if (texture != null) {
             return pixelReader.getColor((int) (x * texture.getWidth()), (int) (y*texture.getHeight()));
-        } else {
+        } else if (color != null) {
             return color;
+        } else {
+            return Color.BLACK; //The void :O
         }
     }
 
     public Color getDarkerColor(double x, double y) {
-        if (darkerColor == null) {
+        if (darkerTexture != null) {
             return darkerReader.getColor((int) (x * darkerTexture.getWidth()), (int) (y*darkerTexture.getHeight()));
-        } else {
+        } else if (darkerColor != null) {
             return darkerColor;
+        } 
+        else {
+            return Color.BLACK;
         }
     }
 
