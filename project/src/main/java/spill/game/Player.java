@@ -44,10 +44,10 @@ public class Player {
     }
 
     public void backward(){
-        if (level.getWall(Vector.sub(pos, direction.getXComponent())).color == null) {
+        if (!level.getWall(Vector.sub(pos, direction.getXComponent().mult(5))).isSolid()) {
             pos.sub(direction.getXComponent());
         }
-        if (level.getWall(Vector.sub(pos, direction.getYComponent())).color == null) {
+        if (!level.getWall(Vector.sub(pos, direction.getYComponent().mult(5))).isSolid()) {
             pos.sub(direction.getYComponent());
         }
     }
