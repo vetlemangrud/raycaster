@@ -23,7 +23,7 @@ public class Game extends AnimationTimer{
     private LevelLoader levelLoader;
     private boolean paused;
 
-    private double deltaTime; //Time between frames (So we can have speed per time instead of speed per frame. The frames are not necessarly equally spaced)
+    private double deltaTime; //Time between frames [s] (So we can have speed per time instead of speed per frame. The frames are not necessarly equally spaced)
     private long lastFrameTime;
 
     //Game data
@@ -44,21 +44,21 @@ public class Game extends AnimationTimer{
 
     @Override
     public void handle(long now){
-        deltaTime = (double) (now - lastFrameTime);
+        deltaTime = (double) (now - lastFrameTime)/1e9;
         lastFrameTime = now;
-        System.out.println("FPS: " + (int) (1/(deltaTime/1000000000)));
+        System.out.println("FPS: " + (int) (1/(deltaTime)));
         //Runs every frame
         if (pressedKeys.contains(FORWARDKEY)) {
-            player.forward();
+            player.forward(deltaTime);
         }
         if (pressedKeys.contains(BACKKEY)) {
-            player.backward();
+            player.backward(deltaTime);
         }
         if (pressedKeys.contains(TURNLEFTKEY)) {
-            player.turnLeft();
+            player.turnLeft(deltaTime);
         }
         if (pressedKeys.contains(TURNRIGHTKEY)) {
-            player.turnRight();
+            player.turnRight(deltaTime);
         }
 
         renderer.render();
