@@ -19,7 +19,7 @@ Most of the code i wrote myself, but i drew a lot of inspiration and got most of
 - The app needs to have a user interface made in FXML with Controller and App classes.
     - It has one App class and two scenes, GameUI.fxml and Launcher.fxml. Each scene has its own Controller class
 - The app needs a system to save and load from a file.
-    - The app reads save state and puts it in a cache when the game is started, and saves the cache to a file when the game is exited (Via the menu). There is also a syatem to load levels.
+    - The app reads save state and puts it in a cache when the game is started, and saves the cache to a file when the game is exited (Via the menu). There is also a system to load levels.
 - There should be error handling where appropriate
     - Errors mostly just print to the terminal, but default options save the app from crashing.
 - The app has to be tested with JUnit tests
