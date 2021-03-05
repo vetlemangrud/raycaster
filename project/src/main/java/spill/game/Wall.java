@@ -53,7 +53,7 @@ public class Wall {
         } else if (color != null) {
             return color;
         } else {
-            return Color.BLACK; //The void :O
+            return Color.WHITE; //The void :O
         }
     }
 
@@ -64,7 +64,7 @@ public class Wall {
             return darkerColor;
         } 
         else {
-            return Color.BLACK;
+            return Color.WHITE;
         }
     }
 
