@@ -90,6 +90,10 @@ public class Vector{
         return Math.pow(a.getX()-b.getX(), 2) + Math.pow(a.getY()-b.getY(), 2);
     }
 
+    public static double angleSub(Vector a, Vector b){
+        return a.getAngle() - b.getAngle();
+    }
+
     public Vector copy(){
         return new Vector(getX(),getY());
     }
