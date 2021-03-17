@@ -46,7 +46,7 @@ public class Game extends AnimationTimer{
     public void handle(long now){
         deltaTime = (double) (now - lastFrameTime)/1e9;
         lastFrameTime = now;
-        System.out.println("FPS: " + (int) (1/(deltaTime)));
+        //System.out.println("FPS: " + (int) (1/(deltaTime)));
         //Runs every frame
         if (pressedKeys.contains(FORWARDKEY)) {
             player.forward(deltaTime);
