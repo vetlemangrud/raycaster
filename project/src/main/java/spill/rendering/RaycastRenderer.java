@@ -7,6 +7,7 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 
 import spill.game.Game;
+import spill.game.Player;
 import spill.game.util.RayCaster;
 import spill.game.util.RayHit;
 import spill.game.util.Vector;
@@ -67,6 +68,7 @@ public class RaycastRenderer extends Renderer {
                 lineHeight = canvasHeight;
             }
 
+            //Wall
             for (int y = 0; y < lineHeight; y++) {
                 double screenY = canvasHeight/2 - lineHeight/2 + y;
                 Color pixelColor = hit.getWall().getColor(hit.getWallX(),(y+yOffset)/(lineHeight+ 2*yOffset));
@@ -76,6 +78,25 @@ public class RaycastRenderer extends Renderer {
                 currentPixelWriter.setColor((int)screenX, (int)screenY, pixelColor);
                 
             }
+
+            // //Floor (EPIC FAIL)
+            // double minDistToViewableFloor = 0.5; //All floor closer than this is outside the viewing cone
+            // double rayAngle = Vector.sub(hit.getPosition(), game.getPlayer().getPos()).getAngle();
+            // double distToViewableFloor = minDistToViewableFloor / Math.cos(rayAngle - game.getPlayer().getDirection().getAngle());
+            // Vector closestViewableFloor = Vector.add(game.getPlayer().getPos(), Vector.getVectorFromAngleAndLength(rayAngle, distToViewableFloor));
+            // for (int y = 0; y < canvasHeight/2 - lineHeight/2; y++) {
+            //     double screenY = canvasHeight - canvasHeight/2 + lineHeight/2 + y;
+            //     Vector floorLocation = Vector.add(hit.getPosition(), Vector.sub(closestViewableFloor, hit.getPosition()).mult(y/(canvasHeight/2 - lineHeight/2)));
+            //     Color pixelColor = Color.BLUE;
+            //     if (Math.abs(floorLocation.getX() - Math.floor(floorLocation.getX())) < 0.05) {
+            //         pixelColor = Color.GREEN;
+            //     }
+            //     if (Math.abs(floorLocation.getY() - Math.floor(floorLocation.getY())) < 0.05) {
+            //         pixelColor = Color.RED;
+            //     }
+            //     currentPixelWriter.setColor((int)screenX, (int)screenY, pixelColor);
+                
+            // }
         }
     }
 }
