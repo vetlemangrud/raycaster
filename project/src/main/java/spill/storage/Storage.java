@@ -113,12 +113,15 @@ public class Storage implements StorageInteface {
         //Make Arraylist of all ids
         ArrayList<Integer> ids = new ArrayList<Integer>();
         Pattern filePattern = Pattern.compile("^Save(?<id>\\d+)\\."+SAVE_EXTENSION+"$");
-        for (File save : listOfSaves) {
-            Matcher fileMatch = filePattern.matcher(save.getName());
-            if(fileMatch.find()){
-                ids.add(Integer.parseInt(fileMatch.group("id")));
+        if (listOfSaves != null) {
+            for (File save : listOfSaves) {
+                Matcher fileMatch = filePattern.matcher(save.getName());
+                if(fileMatch.find()){
+                    ids.add(Integer.parseInt(fileMatch.group("id")));
+                }
             }
         }
+        
 
         //Turn ArrayList to Array when we know the size
         int[] idArray = new int[ids.size()];
