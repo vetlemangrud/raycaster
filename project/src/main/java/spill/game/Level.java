@@ -1,10 +1,14 @@
 package spill.game;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import spill.game.util.Vector;
 
 public class Level {
 
     private Wall[][] walls; //[width][height] array of walls. Cannot be null
+    private Collection<Entity> entities;
     private int width;
     private int height;
 
@@ -20,10 +24,13 @@ public class Level {
                     throw new IllegalArgumentException("Levels must be a NxM 2d matrix");
                 }
             }
+            this.entities = new ArrayList<Entity>();
+            this.entities.add(new Entity(this, new Vector(width/2, height/2), "Vetle"));
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new IllegalArgumentException("Levels must be a NxM 2d matrix and cannot be empty");
         }
         this.walls = walls;
+        
     }
 
     public Level(){
@@ -39,6 +46,7 @@ public class Level {
                 }
             }
         }
+        this.entities = new ArrayList<Entity>();
     }
 
     public Wall getWall(int x, int y){
@@ -52,6 +60,10 @@ public class Level {
             return Wall.AIR;
         }
         
+    }
+
+    public Collection<Entity> getEntities() {
+        return entities;
     }
 
     public int getWidth(){
