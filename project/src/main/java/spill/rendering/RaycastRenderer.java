@@ -1,11 +1,13 @@
 package spill.rendering;
 
+import java.util.ArrayList;
+
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
-
+import spill.game.Entity;
 import spill.game.Game;
 import spill.game.util.RayCaster;
 import spill.game.util.RayHit;
@@ -77,5 +79,15 @@ public class RaycastRenderer extends Renderer {
                 
             }
         }
+    }
+
+    private void drawEntities(){
+        //Sorting entities by distance to player (Closest last)
+        ArrayList<Entity> entities = new ArrayList<Entity>();
+        for (Entity entity : entities) {
+            
+        }
+        
+        
     }
 }
