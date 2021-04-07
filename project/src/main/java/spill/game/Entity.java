@@ -9,7 +9,7 @@ public class Entity{
     private Level level;
 
     public Entity(Level level, Vector startPosition, String spriteName){
-        sprite = new Image(getClass().getResourceAsStream("/sprite/" + spriteName + ".png"));
+        sprite = new Image(getClass().getResourceAsStream("/sprites/" + spriteName + ".png"));
         this.level = level;
         this.pos = startPosition;
     }
