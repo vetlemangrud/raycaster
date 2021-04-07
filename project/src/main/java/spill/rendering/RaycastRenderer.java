@@ -9,7 +9,6 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 import spill.game.Entity;
 import spill.game.Game;
-import spill.game.Player;
 import spill.game.util.RayCaster;
 import spill.game.util.RayHit;
 import spill.game.util.Vector;
@@ -105,9 +104,16 @@ public class RaycastRenderer extends Renderer {
     private void drawEntities(){
         //Sorting entities by distance to player (Closest last)
         ArrayList<Entity> entities = new ArrayList<Entity>();
-        for (Entity entity : entities) {
-            
-        }
+        entities.sort((a, b) -> {
+            double result = Vector.squaredDistance(b.getPos(), game.getPlayer().getPos()) - Vector.squaredDistance(a.getPos(), game.getPlayer().getPos());
+            if (result > 0) {
+                return 1;
+            } else if (result < 0) {
+                return -1;
+            } else {
+                return 0;
+            }
+        });
         
         
     }
