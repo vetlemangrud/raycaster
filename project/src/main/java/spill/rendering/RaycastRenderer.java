@@ -132,7 +132,6 @@ public class RaycastRenderer extends Renderer {
         for (Entity entity : entities) {
             Vector relativePosition = Vector.sub(entity.getPos(),game.getPlayer().getPos()); //Position relative to player
             double cameraX = (Vector.angleSub(relativePosition,game.getPlayer().getDirection())/FOV+0.5)*canvasWidth; //Where the sprite is on camera x
-            System.out.println(cameraX);
             if (0 <= cameraX && cameraX < canvasWidth) {
                 currentPixelWriter.setColor((int)cameraX, (int)canvasHeight/2, Color.GREEN);
             }
