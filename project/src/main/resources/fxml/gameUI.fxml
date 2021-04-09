@@ -14,7 +14,7 @@
       <ImageView id="gameImageView" fx:id="gameImageView" fitHeight="600.0" fitWidth="800.0" onKeyPressed="#onKeyPressed" onKeyReleased="#onKeyReleased" pickOnBounds="true" preserveRatio="true" />
       <Pane id="menuPane" fx:id="menuPane" maxHeight="200.0" maxWidth="400.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgba(0,0,0,0.3); -fx-border-color: #000000; -fx-border-width: 2;" visible="false">
          <children>
-            <Text layoutX="127.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PAUSED">
+            <Text fill="WHITE" layoutX="127.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PAUSED">
                <font>
                   <Font size="40.0" />
                </font>
