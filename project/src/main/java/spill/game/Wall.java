@@ -47,6 +47,10 @@ public class Wall {
         return color != null || texture != null;
     }
 
+    public Image getTexture(){
+        return texture;
+    }
+
     public Color getColor(double x, double y) {
         if (texture != null) {
             return pixelReader.getColor((int) (x * texture.getWidth()), (int) (y*texture.getHeight()));

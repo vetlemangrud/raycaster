@@ -28,9 +28,13 @@ public class BirdseyeRenderer extends Renderer {
         //Draw map
         for (int x = 0; x < level.getWidth(); x++) {
             for (int y = 0; y < level.getHeight(); y++) {
-                gc.setFill(Color.WHITE);
-                gc.setFill(level.getWall(x, y).getColor(0,0));
-                gc.fillRect(x, y, 1, 1);
+                if (level.getWall(x, y).getTexture() != null) {
+                    gc.drawImage(level.getWall(x, y).getTexture(), x, y, 1, 1);
+                } else {
+                    gc.setFill(level.getWall(x, y).getColor(0,0));
+                    gc.fillRect(x, y, 1, 1);
+                }
+                
             }
         }
 
