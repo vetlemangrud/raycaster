@@ -1,7 +1,9 @@
 package spill.rendering;
 
+
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import spill.game.Entity;
 import spill.game.Game;
 import spill.game.Level;
 import spill.game.util.RayCaster;
@@ -11,6 +13,7 @@ public class BirdseyeRenderer extends Renderer {
 
     public BirdseyeRenderer(GraphicsContext gc, Game gameContext, double canvasWidth, double canvasHeight) {
         super(gc, gameContext, canvasWidth, canvasHeight);
+        gc.setImageSmoothing(false);
     }
 
     @Override
@@ -28,6 +31,7 @@ public class BirdseyeRenderer extends Renderer {
         drawMap(level);
         drawRays(level);
         drawPlayer();
+        drawEntities(level);
         
 
         gc.restore();
@@ -64,6 +68,13 @@ public class BirdseyeRenderer extends Renderer {
         gc.setLineWidth(0.1);
         gc.strokeLine(0, 0, 0.2, 0);
         gc.restore();
+    }
+
+    private void drawEntities(Level level){
+        for (Entity entity : level.getEntities()) {
+            gc.drawImage(entity.getSprite(), entity.getPos().getX(), entity.getPos().getX(), 1, 1);
+        }
+        
     }
 
 }
