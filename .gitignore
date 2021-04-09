@@ -113,6 +113,7 @@ buildNumber.properties
 ### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json
+.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 .vscode/launch.json
@@ -124,3 +125,4 @@ buildNumber.properties
 
 ## Tile source ##
 crawl-tiles Oct-5-2010/
+
