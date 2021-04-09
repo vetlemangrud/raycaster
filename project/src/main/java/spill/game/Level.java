@@ -25,7 +25,7 @@ public class Level {
                 }
             }
             this.entities = new ArrayList<Entity>();
-            this.entities.add(new Entity(this, new Vector(width/2, height/2), "vetle"));
+            this.entities.add(new Entity(this, new Vector(width/2, height/2), "josephine"));
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new IllegalArgumentException("Levels must be a NxM 2d matrix and cannot be empty");
         }

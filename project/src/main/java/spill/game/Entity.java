@@ -17,4 +17,8 @@ public class Entity{
     public Vector getPos(){
         return pos;
     }
+
+    public Image getSprite(){
+        return sprite;
+    }
 }
