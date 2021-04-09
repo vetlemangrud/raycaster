@@ -13,6 +13,14 @@
   		<artifactId>javafx-fxml</artifactId>
   		<version>16-ea+5</version>
   	</dependency>
+
+	<!-- https://mvnrepository.com/artifact/org.openjfx/javafx.media -->
+	<dependency>
+		<groupId>org.openjfx</groupId>
+		<artifactId>javafx-media</artifactId>
+		<version>15</version>
+		<type>pom</type>
+	</dependency>
   	
   	<!--  JUnit 5 -->
   	<dependency>

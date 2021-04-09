@@ -1,9 +1,12 @@
 package spill.game;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 
 import javafx.animation.AnimationTimer;
+import javafx.scene.media.Media;  
+import javafx.scene.media.MediaPlayer;  
 import spill.rendering.Renderer;
 import spill.storage.LevelLoader;
 import spill.storage.Storage;
@@ -19,6 +22,7 @@ public class Game extends AnimationTimer{
 
     private GameController gameController;
     private Renderer renderer;
+    private MediaPlayer mediaPlayer;
     private StorageInteface storage;
     private LevelLoader levelLoader;
     private boolean paused;
@@ -40,6 +44,11 @@ public class Game extends AnimationTimer{
         paused = false;
         lastFrameTime = 0;
         this.start();
+
+        // Maybe later...
+        // Media bgMusic = new Media(new File("project/src/main/resources/sound/bgMusic.mp3").toURI().toString());
+        // mediaPlayer = new MediaPlayer(bgMusic);
+        // mediaPlayer.play();
     }
 
     @Override
