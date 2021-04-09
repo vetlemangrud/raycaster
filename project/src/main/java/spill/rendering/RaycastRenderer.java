@@ -39,7 +39,9 @@ public class RaycastRenderer extends Renderer {
         drawFloorAndRoof();
 
         drawWalls();
+        drawEntities();
         gameImageView.setImage(currentFrame);
+
     }
 
     private void castRays(){
@@ -102,8 +104,13 @@ public class RaycastRenderer extends Renderer {
     }
 
     private void drawEntities(){
+        //The technique is based on https://lodev.org/cgtutor/raycasting3.html, but some steps are changed
+
         //Sorting entities by distance to player (Closest last)
         ArrayList<Entity> entities = new ArrayList<Entity>();
+        for (Entity entity : game.getCurrentLevel().getEntities()) {
+            entities.add(entity);
+        }
         entities.sort((a, b) -> {
             double result = Vector.squaredDistance(b.getPos(), game.getPlayer().getPos()) - Vector.squaredDistance(a.getPos(), game.getPlayer().getPos());
             if (result > 0) {
@@ -114,6 +121,17 @@ public class RaycastRenderer extends Renderer {
                 return 0;
             }
         });
+
+        //Draw entities
+        for (Entity entity : entities) {
+            Vector relativePosition = Vector.sub(entity.getPos(),game.getPlayer().getPos()); //Position relative to player
+            double cameraX = (Vector.angleSub(relativePosition,game.getPlayer().getDirection())/FOV+0.5)*canvasWidth; //Where the sprite is on camera x
+            System.out.println(cameraX);
+            if (0 <= cameraX && cameraX < canvasWidth) {
+                currentPixelWriter.setColor((int)cameraX, (int)canvasHeight/2, Color.GREEN);
+            }
+            
+        }
         
         
     }
