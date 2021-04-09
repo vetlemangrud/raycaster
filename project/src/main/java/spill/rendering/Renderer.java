@@ -21,4 +21,8 @@ public abstract class Renderer {
 	 * Render the scene
 	 */
     public void render() {}
+    /**
+	 * Clear the scene
+	 */
+    public void clear() {}
 }

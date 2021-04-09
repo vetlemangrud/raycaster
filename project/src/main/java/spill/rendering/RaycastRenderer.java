@@ -44,6 +44,12 @@ public class RaycastRenderer extends Renderer {
 
     }
 
+    @Override
+    public void clear(){
+        gameImageView.setImage(new WritableImage((int) gameImageView.getFitWidth(), (int) gameImageView.getFitHeight()));
+        gc.clearRect(0,0,canvasWidth,canvasHeight);
+    }
+
     private void castRays(){
         for (int i = 0; i < RAY_COUNT; i++) {
             rayHits[i] = RayCaster.hitWall(game.getPlayer().getPos(), game.getPlayer().getDirection().copy().rotate(FOV * i/RAY_COUNT - FOV/2), game.getCurrentLevel());

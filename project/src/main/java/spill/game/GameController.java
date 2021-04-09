@@ -15,7 +15,7 @@ import spill.rendering.BirdseyeRenderer;
 import spill.rendering.RaycastRenderer;
 
 public class GameController{
-    private static final boolean USE_RAYCAST_RENDERER = true;
+    private static final boolean DEV_MODE = true;
     
     @FXML
     private Canvas canvas;
@@ -30,8 +30,14 @@ public class GameController{
 
     private Game game;
 
+    private Renderer rayCastRenderer;
+    private Renderer birdseyeRenderer;
+
     @FXML
     private void onKeyPressed(KeyEvent evt){
+        if (evt.getCode().getName().equals("R") && DEV_MODE) {
+            toggleRenderer();
+        }
         game.registerKeyPress(evt.getCode().getName());
     }
 
@@ -71,18 +77,24 @@ public class GameController{
         game = new Game(this);
         game.setStorageId(storageId);
         game.loadState();
+        
+        rayCastRenderer = new RaycastRenderer(canvas.getGraphicsContext2D(),game,gameImageView ,canvas.getWidth(),canvas.getHeight());
+        birdseyeRenderer = new BirdseyeRenderer(canvas.getGraphicsContext2D(),game,canvas.getWidth(),canvas.getHeight());
+        
+        
+        game.setRenderer(rayCastRenderer);
 
-        Renderer renderer;
-        if (USE_RAYCAST_RENDERER) {
-            renderer = new RaycastRenderer(canvas.getGraphicsContext2D(),game,gameImageView ,canvas.getWidth(),canvas.getHeight());
+        
+    }
+
+    private void toggleRenderer(){
+        game.getRenderer().clear();
+        if (game.getRenderer() == rayCastRenderer) {
+            game.setRenderer(birdseyeRenderer);
         } else {
-            renderer = new BirdseyeRenderer(canvas.getGraphicsContext2D(),game,canvas.getWidth(),canvas.getHeight());
+            game.setRenderer(rayCastRenderer);
         }
-        
-        
-        game.setRenderer(renderer);
 
-        
     }
 
 

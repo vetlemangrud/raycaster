@@ -37,6 +37,11 @@ public class BirdseyeRenderer extends Renderer {
         gc.restore();
     }
 
+    @Override
+    public void clear(){
+        gc.clearRect(0,0,canvasWidth,canvasHeight);
+    }
+
     private void drawMap(Level level){
         for (int x = 0; x < level.getWidth(); x++) {
             for (int y = 0; y < level.getHeight(); y++) {

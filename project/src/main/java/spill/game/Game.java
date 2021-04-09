@@ -113,6 +113,10 @@ public class Game extends AnimationTimer{
         this.renderer = renderer;
     }
 
+    public Renderer getRenderer(){
+        return renderer;
+    }
+
     public Level getCurrentLevel(){
         return currentLevel;
     }
