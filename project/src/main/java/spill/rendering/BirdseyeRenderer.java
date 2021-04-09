@@ -2,6 +2,7 @@ package spill.rendering;
 
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import spill.game.Entity;
 import spill.game.Game;
@@ -77,7 +78,8 @@ public class BirdseyeRenderer extends Renderer {
 
     private void drawEntities(Level level){
         for (Entity entity : level.getEntities()) {
-            gc.drawImage(entity.getSprite(), entity.getPos().getX(), entity.getPos().getX(), 1, 1);
+            Image sprite = entity.getSprite();
+            gc.drawImage(sprite, entity.getPos().getX()-0.5, entity.getPos().getY()-0.5, 1, 1);
         }
         
     }
