@@ -25,7 +25,15 @@ public class BirdseyeRenderer extends Renderer {
         gc.translate((canvasWidth - level.getWidth() * scaleFactor)/2, (canvasHeight - level.getHeight() * scaleFactor)/2);
         gc.scale(scaleFactor, scaleFactor);
 
-        //Draw map
+        drawMap(level);
+        drawRays(level);
+        drawPlayer();
+        
+
+        gc.restore();
+    }
+
+    private void drawMap(Level level){
         for (int x = 0; x < level.getWidth(); x++) {
             for (int y = 0; y < level.getHeight(); y++) {
                 if (level.getWall(x, y).getTexture() != null) {
@@ -37,15 +45,17 @@ public class BirdseyeRenderer extends Renderer {
                 
             }
         }
+    }
 
-        //Draw ray
+    private void drawRays(Level level){
         gc.setLineWidth(0.01);
         for (int i = 0; i < 100; i++) {
             Vector hit = RayCaster.hitWall(game.getPlayer().getPos(), game.getPlayer().getDirection().copy().rotate(Math.PI/2 * ((double)i)/100 - Math.PI/4), level).getPosition();
             gc.strokeLine(game.getPlayer().getPos().getX(), game.getPlayer().getPos().getY(), hit.getX(), hit.getY());
         }
+    }
 
-        //Draw player
+    private void drawPlayer(){
         gc.save();
         gc.translate(game.getPlayer().getPos().getX(), game.getPlayer().getPos().getY());
         gc.rotate(Math.toDegrees(game.getPlayer().getDirection().getAngle()));
@@ -53,9 +63,6 @@ public class BirdseyeRenderer extends Renderer {
         gc.fillRoundRect(-0.2, -0.2, 0.4, 0.4, 0.4, 0.4);
         gc.setLineWidth(0.1);
         gc.strokeLine(0, 0, 0.2, 0);
-        gc.restore();
-        
-
         gc.restore();
     }
 
