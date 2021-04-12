@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.PixelReader;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
@@ -137,7 +138,7 @@ public class RaycastRenderer extends Renderer {
             //Settng the sprite size the same way we set the wall line height (Sprite should be the same height as a wall)
             double spriteSize = canvasHeight / relativePosition.getLength() * Math.cos(game.getPlayer().getDirection().getAngle() - relativePosition.getAngle());
             if (0 <= cameraX && cameraX < canvasWidth) {
-                currentPixelWriter.setColor((int)cameraX, (int) (canvasHeight/2 + spriteSize/4), Color.GREEN);
+                //currentPixelWriter.setColor((int)cameraX, (int) (canvasHeight/2 + spriteSize/4), Color.GREEN);
             }
             
         }
