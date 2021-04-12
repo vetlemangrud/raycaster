@@ -128,12 +128,16 @@ public class RaycastRenderer extends Renderer {
             }
         });
 
+
         //Draw entities
         for (Entity entity : entities) {
             Vector relativePosition = Vector.sub(entity.getPos(),game.getPlayer().getPos()); //Position relative to player
             double cameraX = (Vector.angleSub(relativePosition,game.getPlayer().getDirection())/FOV+0.5)*canvasWidth; //Where the sprite is on camera x
+            
+            //Settng the sprite size the same way we set the wall line height (Sprite should be the same height as a wall)
+            double spriteSize = canvasHeight / relativePosition.getLength() * Math.cos(game.getPlayer().getDirection().getAngle() - relativePosition.getAngle());
             if (0 <= cameraX && cameraX < canvasWidth) {
-                currentPixelWriter.setColor((int)cameraX, (int)canvasHeight/2, Color.GREEN);
+                currentPixelWriter.setColor((int)cameraX, (int) (canvasHeight/2 + spriteSize/4), Color.GREEN);
             }
             
         }
