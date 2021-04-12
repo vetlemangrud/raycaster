@@ -1,16 +1,20 @@
 package spill.game;
 
+import java.util.regex.Pattern;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import spill.rendering.Renderer;
+import spill.storage.Storage;
 import spill.rendering.BirdseyeRenderer;
 import spill.rendering.RaycastRenderer;
 
@@ -28,6 +32,9 @@ public class GameController{
 
     @FXML
     private Pane settingsPane;
+
+    @FXML
+    private Slider volumeSlider;
 
     private Scene launcherScene;
 
@@ -52,6 +59,7 @@ public class GameController{
     @FXML
     private void onSaveAndQuitButton(ActionEvent evt){
         game.saveState();
+        game.stopMusic();
         openLauncherScene(evt);
     }
 
@@ -69,7 +77,7 @@ public class GameController{
 
     @FXML
     private void onVolumeSliderDrag(){
-        System.out.println("dræg");
+        game.changeVolume(volumeSlider.valueProperty().intValue());
     }
 
     @FXML
@@ -88,8 +96,31 @@ public class GameController{
         menuPane.setVisible(false);
     }
 
+    private void loadSettings(int storageId){
+        //Loads settings to settings pane or sets defaults
+        
+        Storage storage = new Storage(storageId);
+        if(!validateVolume(storage.readSave("VOLUME"))){
+            try {
+                storage.writeSave("VOLUME", "50");
+            } catch (Exception e) {
+                System.out.println("Could not save game: " + e.getMessage());
+            }
+        }
+        volumeSlider.adjustValue(Integer.parseInt(storage.readSave("VOLUME")));
+    }
+
+    private boolean validateVolume(String volume){
+        Pattern volumePattern = Pattern.compile("^(\\d\\d?|100)$");
+        return volumePattern.matcher(volume).find();
+    }
+
     public void initializeGame(int storageId){
         menuPane.setVisible(false);
+        settingsPane.setVisible(false);
+
+        //Load settings
+        loadSettings(storageId);
 
         game = new Game(this);
         game.setStorageId(storageId);

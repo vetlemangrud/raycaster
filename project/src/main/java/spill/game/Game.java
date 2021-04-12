@@ -46,9 +46,9 @@ public class Game extends AnimationTimer{
         this.start();
 
         // Maybe later...
-        // Media bgMusic = new Media(new File("project/src/main/resources/sound/bgMusic.mp3").toURI().toString());
-        // mediaPlayer = new MediaPlayer(bgMusic);
-        // mediaPlayer.play();
+        Media bgMusic = new Media(new File("project/src/main/resources/sound/bgMusic.mp3").toURI().toString());
+        mediaPlayer = new MediaPlayer(bgMusic);
+        mediaPlayer.play();
     }
 
     @Override
@@ -104,9 +104,14 @@ public class Game extends AnimationTimer{
             double y = Double.parseDouble(storage.readSave("PLAYER_Y"));
             double angle = Double.parseDouble(storage.readSave("PLAYER_ANGLE"));
             player = new Player(currentLevel, x, y, angle);
+            changeVolume(Integer.parseInt(storage.readSave("VOLUME")));
         } catch (Exception e) {
             System.out.println("Previous player position not found or is corrupted");
         }
+    }
+
+    public void stopMusic(){
+        mediaPlayer.stop(); //Most important line of the whole project 👂🔫
     }
 
     public void setRenderer(Renderer renderer){
@@ -136,5 +141,15 @@ public class Game extends AnimationTimer{
 
     public void registerKeyRelease(String keyName){
         pressedKeys.remove(keyName);
+    }
+
+    public void changeVolume(int volume){
+        //Map [0, 100] to [0, 1]
+        mediaPlayer.setVolume(((double)volume)/ 100);
+        try {
+            storage.writeSave("VOLUME", String.valueOf(volume));
+        } catch (Exception e) {
+            System.out.println("Saving error: " + e.getMessage());
+        }
     }
 }
