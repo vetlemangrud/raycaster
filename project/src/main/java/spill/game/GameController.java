@@ -26,6 +26,9 @@ public class GameController{
     @FXML
     private Pane menuPane;
 
+    @FXML
+    private Pane settingsPane;
+
     private Scene launcherScene;
 
     private Game game;
@@ -54,7 +57,19 @@ public class GameController{
 
     @FXML
     private void onSettingsButton(){
-        System.out.println("Settings");
+        menuPane.setVisible(false);
+        settingsPane.setVisible(true);
+    }
+
+    @FXML
+    private void onSettingsBackButton(){
+        menuPane.setVisible(true);
+        settingsPane.setVisible(false);
+    }
+
+    @FXML
+    private void onVolumeSliderDrag(){
+        System.out.println("dræg");
     }
 
     @FXML
@@ -62,6 +77,8 @@ public class GameController{
         menuPane.setVisible(false);
         game.togglePaused();
     }
+
+    
 
     public void openPauseScreen(){
         menuPane.setVisible(true);

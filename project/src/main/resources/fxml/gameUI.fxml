@@ -2,6 +2,7 @@
 
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
@@ -24,12 +25,18 @@
             <Button focusTraversable="false" layoutX="91.0" layoutY="149.0" mnemonicParsing="false" onAction="#onSaveAndQuitButton" prefHeight="37.0" prefWidth="217.0" style="-fx-background-color: #000000;" text="Save and Quit" textFill="WHITE" />
          </children>
       </Pane>
-      <Pane id="settingsPane" maxHeight="400.0" maxWidth="400.0" prefHeight="394.0" prefWidth="800.0" style="-fx-background-color: rgba(0,0,0,0.3); -fx-border-color: #000000; -fx-border-width: 2;">
+      <Pane id="settingsPane" fx:id="settingsPane" maxHeight="400.0" maxWidth="400.0" prefHeight="394.0" prefWidth="800.0" style="-fx-background-color: rgba(0,0,0,0.3); -fx-border-color: #000000; -fx-border-width: 2;" visible="false">
          <children>
-            <Button focusTraversable="false" layoutX="92.0" layoutY="340.0" mnemonicParsing="false" onAction="#onSaveAndQuitButton" prefHeight="37.0" prefWidth="217.0" style="-fx-background-color: #000000;" text="Back" textFill="WHITE" />
-            <Text layoutX="114.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SETTINGS">
+            <Button focusTraversable="false" layoutX="92.0" layoutY="340.0" mnemonicParsing="false" onAction="#onSettingsBackButton" prefHeight="37.0" prefWidth="217.0" style="-fx-background-color: #000000;" text="Back" textFill="WHITE" />
+            <Text fill="WHITE" layoutX="114.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SETTINGS">
                <font>
                   <Font size="40.0" />
+               </font>
+            </Text>
+            <Slider fx:id="volumeSlider" layoutX="68.0" layoutY="182.0" onMouseDragged="#onVolumeSliderDrag" onTouchMoved="#onVolumeSliderDrag" prefHeight="37.0" prefWidth="266.0" />
+            <Text fill="WHITE" layoutX="167.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Volume">
+               <font>
+                  <Font size="20.0" />
                </font>
             </Text>
          </children>
