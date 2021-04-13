@@ -147,7 +147,7 @@ public class RaycastRenderer extends Renderer {
             double spriteScaling = spriteSize/entity.getSprite().getHeight();
             double scaledHeight = spriteScaling * entity.getSprite().getHeight();
             double scaledWidth = spriteScaling * entity.getSprite().getWidth();
-            int leftScreenX = (int) (centerScreenX - entity.getSprite().getWidth() * spriteScaling); //X position of leftmost pixels for this sprite
+            int leftScreenX = (int) (centerScreenX - entity.getSprite().getWidth() * spriteScaling/2); //X position of leftmost pixels for this sprite
             int topScreenY = (int) (canvasHeight / 2 - spriteSize / 2); // Y position of top pixels for this sprite
 
             //Draw sprite to screen
