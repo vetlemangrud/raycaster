@@ -15,7 +15,7 @@ public class GameApp extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         stage.setResizable(false);
-        stage.setTitle("Sykt kult spill");
+        stage.setTitle("Vetle sitt sykt kule objektprosjekt");
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/icon.png")));
 
         //Launcher UI is loaded from FXML
