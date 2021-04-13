@@ -138,7 +138,8 @@ public class RaycastRenderer extends Renderer {
             //Settng the sprite size the same way we set the wall line height (Sprite should be the same height as a wall)
             double spriteSize = canvasHeight / relativePosition.getLength() * Math.cos(game.getPlayer().getDirection().getAngle() - relativePosition.getAngle());
             if (0 <= cameraX && cameraX < canvasWidth) {
-                //currentPixelWriter.setColor((int)cameraX, (int) (canvasHeight/2 + spriteSize/4), Color.GREEN);
+                PixelReader spritePixelReader = entity.getSprite().getPixelReader();
+                currentPixelWriter.setPixels((int) (cameraX - entity.getSprite().getWidth()/2), (int) (canvasHeight/2 - spriteSize/4), (int) entity.getSprite().getWidth(), (int) entity.getSprite().getHeight(), spritePixelReader, 0, 0);
             }
             
         }
