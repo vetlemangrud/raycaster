@@ -132,7 +132,14 @@ public class RaycastRenderer extends Renderer {
 
         //Draw entities
         for (Entity entity : entities) {
-            Vector relativePosition = Vector.sub(entity.getPos(),game.getPlayer().getPos()); //Position relative to player
+            drawEntity(entity);
+        }
+        
+        
+    }
+
+    private void drawEntity(Entity entity){
+        Vector relativePosition = Vector.sub(entity.getPos(),game.getPlayer().getPos()); //Position relative to player
             double centerScreenX = (Vector.angleSub(relativePosition,game.getPlayer().getDirection())/FOV+0.5)*canvasWidth; //Where the center of the sprite is on screen x
             
             //Settng the sprite size the same way we set the wall line height (Sprite should be the same height as a wall)
@@ -144,23 +151,25 @@ public class RaycastRenderer extends Renderer {
             int topScreenY = (int) (canvasHeight / 2 - spriteSize / 2); // Y position of top pixels for this sprite
 
             //Draw sprite to screen
+            //This code is smelling real bad 🤢
+            //TODO:Make sprite not move around wierdly
             PixelReader spritePixelReader = entity.getSprite().getPixelReader();
             for (int x = 0; x < scaledWidth; x++) {
-                for (int y = 0; y < scaledHeight; y++) {
-                    int screenX = leftScreenX + x;
-                    int screenY = topScreenY + y;
-                    if (screenX >= 0 && screenX < canvasWidth && screenY >= 0 && screenY < canvasHeight) {
-                        Color pixelColor = spritePixelReader.getColor((int) (x/spriteScaling), (int) (y/spriteScaling));
-                        if (pixelColor.isOpaque()) {
-                            currentPixelWriter.setColor(screenX, screenY, pixelColor);
+                int screenX = leftScreenX + x;
+                if (screenX >= 0 && screenX < canvasWidth) {
+                    if(Vector.distance(rayHits[(int) (screenX * RAY_COUNT/canvasWidth)].getPosition(), game.getPlayer().getPos()) > Vector.distance(entity.getPos(), game.getPlayer().getPos())){
+                        for (int y = 0; y < scaledHeight; y++) {
+                            int screenY = topScreenY + y;
+                            if (screenY >= 0 && screenY < canvasHeight) {
+                                Color pixelColor = spritePixelReader.getColor((int) (x/spriteScaling), (int) (y/spriteScaling));
+                                if (pixelColor.isOpaque()) {
+                                    currentPixelWriter.setColor(screenX, screenY, pixelColor);
+                                }
+                            }
                         }
-                        
                     }
+                
                 }
             }
-            
-        }
-        
-        
     }
 }
