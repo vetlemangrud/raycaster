@@ -152,7 +152,7 @@ public class RaycastRenderer extends Renderer {
 
             //Draw sprite to screen
             //This code is smelling real bad 🤢
-            //TODO:Make sprite not move around wierdly
+            //TODO:Maybe fix fisheyething with sprites
             PixelReader spritePixelReader = entity.getSprite().getPixelReader();
             for (int x = 0; x < scaledWidth; x++) {
                 int screenX = leftScreenX + x;
