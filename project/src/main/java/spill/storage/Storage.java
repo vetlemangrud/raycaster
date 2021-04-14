@@ -61,11 +61,14 @@ public class Storage implements StorageInteface {
         try (InputStream is = new FileInputStream(getSavePath(saveId).toFile())) {
             try (Scanner scanner = new Scanner(is)) {
                 while (scanner.hasNextLine()) {
+                   
                     String line = scanner.nextLine();
                     Pattern dataPattern = Pattern.compile("^(?<property>(?:[A-Z_])+)=(?<value>.+)$");
                     Matcher dataMatch = dataPattern.matcher(line);
-                    dataMatch.find();
-                    cache.put(dataMatch.group("property"), dataMatch.group("value"));
+                    if (dataMatch.find()) {
+                        cache.put(dataMatch.group("property"), dataMatch.group("value"));
+                    }
+                    
                 }
             }
         } catch (FileNotFoundException e) {
