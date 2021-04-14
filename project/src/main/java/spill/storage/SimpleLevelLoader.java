@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-import spill.game.Entity;
+import spill.game.entities.Entity;
 import spill.game.Level;
 import spill.game.Wall;
 import spill.game.util.Vector;

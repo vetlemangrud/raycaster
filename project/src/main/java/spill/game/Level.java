@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import spill.game.util.Vector;
+import spill.game.entities.Entity;
 
 public class Level {
 

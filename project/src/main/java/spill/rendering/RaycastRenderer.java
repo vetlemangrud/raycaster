@@ -8,7 +8,7 @@ import javafx.scene.image.PixelReader;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
-import spill.game.Entity;
+import spill.game.entities.Entity;
 import spill.game.Game;
 import spill.game.util.RayCaster;
 import spill.game.util.RayHit;

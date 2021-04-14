@@ -4,7 +4,7 @@ package spill.rendering;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
-import spill.game.Entity;
+import spill.game.entities.Entity;
 import spill.game.Game;
 import spill.game.Level;
 import spill.game.util.RayCaster;
