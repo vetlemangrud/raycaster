@@ -16,7 +16,7 @@ public class Level {
     
     
     //Creates level from an array of walls
-    public Level(Wall[][] walls, Vector startPosition) {
+    public Level(Wall[][] walls, Collection<Entity> entities, Vector startPosition) {
         try {
             this.startPosition = startPosition;
             width = walls.length;
@@ -26,8 +26,7 @@ public class Level {
                     throw new IllegalArgumentException("Levels must be a NxM 2d matrix");
                 }
             }
-            this.entities = new ArrayList<>();
-            this.entities.add(new Entity(this, new Vector(width/2, height/2), "josephine"));
+            this.entities = entities;
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new IllegalArgumentException("Levels must be a NxM 2d matrix and cannot be empty");
         }

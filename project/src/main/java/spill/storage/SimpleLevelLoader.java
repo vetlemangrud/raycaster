@@ -2,10 +2,12 @@ package spill.storage;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import spill.game.Entity;
 import spill.game.Level;
 import spill.game.Wall;
 import spill.game.util.Vector;
@@ -19,7 +21,8 @@ public class SimpleLevelLoader implements LevelLoader {
     Next h lines: w * wall (See wallCodes for possible characters)
     Next line: Player startX
     Next line: Player startY
-    
+    Next line: Entity count, e
+    Next 3 * e lines: Entity texture, x pos, y pos
     */
     
 
@@ -56,7 +59,17 @@ public class SimpleLevelLoader implements LevelLoader {
                 double startY = Double.parseDouble(scanner.nextLine());
                 Vector startPosition = new Vector(startX, startY);
 
-                return new Level(walls, startPosition);
+                //Get entities
+                ArrayList<Entity> entities = new ArrayList<>();
+                int entityCount = Integer.parseInt(scanner.nextLine());
+                for (int i = 0; i < entityCount; i++) {
+                    String spriteName = scanner.nextLine();
+                    double entityX = Double.parseDouble(scanner.nextLine());
+                    double entityY = Double.parseDouble(scanner.nextLine());
+                    entities.add(new Entity(new Vector(entityX, entityY), spriteName));
+                }
+
+                return new Level(walls, entities, startPosition);
             }
         } catch (IOException err) {
             System.err.println(err.getMessage());
