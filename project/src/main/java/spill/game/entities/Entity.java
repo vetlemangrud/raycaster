@@ -1,4 +1,4 @@
-package spill.game;
+package spill.game.entities;
 
 import javafx.scene.image.Image;
 import spill.game.util.Vector;
