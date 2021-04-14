@@ -11,12 +11,14 @@ public class Level {
     private Collection<Entity> entities;
     private int width;
     private int height;
+    private Vector startPosition;
 
     
     
     //Creates level from an array of walls
-    public Level(Wall[][] walls) {
+    public Level(Wall[][] walls, Vector startPosition) {
         try {
+            this.startPosition = startPosition;
             width = walls.length;
             height = walls[0].length;
             for (Wall[] row : walls) {
@@ -33,7 +35,9 @@ public class Level {
         
     }
 
+    //Test level
     public Level(){
+        startPosition = new Vector(10,10);
         walls = new Wall[20][20];
         width = walls.length;
         height = walls[0].length;
@@ -72,5 +76,9 @@ public class Level {
 
     public int getHeight(){
         return height;
+    }
+
+    public Vector getStartPosition(){
+        return startPosition.copy();
     }
 }

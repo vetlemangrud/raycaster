@@ -16,7 +16,7 @@ public class Player {
 
     public Player(Level level){
         this.level = level;
-        pos = new Vector(level.getWidth()/2, level.getHeight()/2);
+        pos = level.getStartPosition();
         direction = new Vector(SPEED, 0);
     }
 
