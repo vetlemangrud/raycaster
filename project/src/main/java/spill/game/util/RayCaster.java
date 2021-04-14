@@ -6,7 +6,7 @@ public class RayCaster {
     //Thanks to Lode for much inspiration and help https://lodev.org/cgtutor/raycasting.html
     //Also thanks to 3DSage https://www.youtube.com/watch?v=gYRrGTC7GtA&t=467s
 
-    private static final int DEPTH_OF_FIELD = 8; //How many blocks the ray can travel max 
+    private static final int DEPTH_OF_FIELD = 50; //How many blocks the ray can travel max 
     
     public static RayHit hitWall(Vector origin, Vector direction, Level level){
         RayHit horizontalHit = hitHorizontalWall(origin, direction, level); //Point where ray hits a wall (Just checking horizontal walls) (Global position)
