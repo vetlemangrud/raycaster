@@ -12,6 +12,7 @@ import spill.storage.LevelLoader;
 import spill.storage.SimpleLevelLoader;
 import spill.storage.Storage;
 import spill.storage.StorageInteface;
+import spill.storage.TiledLevelLoader;
 
 public class Game extends AnimationTimer{
     // TODO: Sette dette i storage, så hver save kan ha egne controls
@@ -37,7 +38,7 @@ public class Game extends AnimationTimer{
 
     public Game(GameController gameController){
         this.gameController = gameController;
-        levelLoader = new SimpleLevelLoader();
+        levelLoader = new TiledLevelLoader();
         pressedKeys = new ArrayList<>();
         currentLevel = levelLoader.load(1);
         player = new Player(currentLevel);
