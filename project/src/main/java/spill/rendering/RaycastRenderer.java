@@ -139,6 +139,10 @@ public class RaycastRenderer extends Renderer {
 
     private void drawEntity(Entity entity){
         Vector relativePosition = Vector.sub(entity.getPos(),game.getPlayer().getPos()); //Position relative to player
+        if (relativePosition.getLength() < 0.01) {
+            //Drawing acts freaky when the sprite is at the same point as the player (Infinite height)
+            relativePosition = new Vector(0.01,0);
+        }
         double angleSub = Vector.angleSub(relativePosition,game.getPlayer().getDirection()); // Angle between player direction vector and vector to sprite
         angleSub = (angleSub + 3 * Math.PI) % (2*Math.PI) - Math.PI; //Turns every angle to an angle between -PI and PI
         double centerScreenX = (angleSub/FOV+0.5)*canvasWidth; //Where the center of the sprite is on screen x
