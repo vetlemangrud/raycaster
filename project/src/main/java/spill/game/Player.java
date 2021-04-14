@@ -29,11 +29,11 @@ public class Player {
 
 
     public Vector getPos() {
-        return pos;
+        return pos.copy();
     }
 
     public Vector getDirection() {
-        return direction;
+        return direction.copy();
     }
 
     public void forward(double deltaTime){

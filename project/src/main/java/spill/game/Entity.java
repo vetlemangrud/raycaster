@@ -15,7 +15,7 @@ public class Entity{
     }
 
     public Vector getPos(){
-        return pos;
+        return pos.copy();
     }
 
     public Image getSprite(){
