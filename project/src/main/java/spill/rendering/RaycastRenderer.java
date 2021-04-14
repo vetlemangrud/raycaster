@@ -16,7 +16,7 @@ import spill.game.util.Vector;
 
 public class RaycastRenderer extends Renderer {
     private static final int RAY_COUNT = 800;
-    private static final double FOV = Math.PI/2.5;
+    private static final double FOV = Math.PI/2.8;
 
     private ImageView gameImageView;
     private PixelWriter currentPixelWriter;
@@ -148,12 +148,13 @@ public class RaycastRenderer extends Renderer {
         double centerScreenX = (angleSub/FOV+0.5)*canvasWidth; //Where the center of the sprite is on screen x
         
         //Settng the sprite size the same way we set the wall line height (Sprite should be the same height as a wall)
-        double spriteSize = canvasHeight / relativePosition.getLength();
-        double spriteScaling = spriteSize/entity.getSprite().getHeight();
-        double scaledHeight = spriteScaling * entity.getSprite().getHeight();
+        angleSub = Math.min(Math.max(angleSub, -Math.PI/4), Math.PI/4); //Had to constrain angleSub so scaledHeight does not go to infinity
+        double fisheyeCorrectedDistance = relativePosition.getLength() * Math.cos(angleSub);
+        double scaledHeight = canvasHeight / fisheyeCorrectedDistance;
+        double spriteScaling = scaledHeight/entity.getSprite().getHeight();
         double scaledWidth = spriteScaling * entity.getSprite().getWidth();
         int leftScreenX = (int) (centerScreenX - entity.getSprite().getWidth() * spriteScaling/2); //X position of leftmost pixels for this sprite
-        int topScreenY = (int) (canvasHeight / 2 - spriteSize / 2); // Y position of top pixels for this sprite
+        int topScreenY = (int) (canvasHeight / 2 - scaledHeight / 2); // Y position of top pixels for this sprite
 
         //Draw sprite to screen
         //Not drawing pixel if transparent or the wall at that screenX is closer than the sprite
