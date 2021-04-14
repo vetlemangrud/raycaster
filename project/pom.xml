@@ -21,6 +21,12 @@
 		<version>15</version>
 		<type>pom</type>
 	</dependency>
+
+	<dependency>
+        <groupId>org.json</groupId>
+        <artifactId>json</artifactId>
+        <version>20180130</version>
+    </dependency>
   	
   	<!--  JUnit 5 -->
   	<dependency>

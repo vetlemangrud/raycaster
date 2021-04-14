@@ -4,4 +4,5 @@ open module spookert {
 	requires javafx.fxml;
 	requires javafx.graphics;
 	requires javafx.media;
+	requires json;
 }
