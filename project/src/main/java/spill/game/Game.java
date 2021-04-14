@@ -9,6 +9,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;  
 import spill.rendering.Renderer;
 import spill.storage.LevelLoader;
+import spill.storage.SimpleLevelLoader;
 import spill.storage.Storage;
 import spill.storage.StorageInteface;
 
@@ -36,7 +37,7 @@ public class Game extends AnimationTimer{
 
     public Game(GameController gameController){
         this.gameController = gameController;
-        levelLoader = new LevelLoader();
+        levelLoader = new SimpleLevelLoader();
         pressedKeys = new ArrayList<>();
         currentLevel = levelLoader.load(1);
         player = new Player(currentLevel);
@@ -105,7 +106,7 @@ public class Game extends AnimationTimer{
             player = new Player(currentLevel, x, y, angle);
             changeVolume(Integer.parseInt(storage.readSave("VOLUME")));
         } catch (Exception e) {
-            System.out.println("Previous player position not found or is corrupted");
+            System.out.println("Saved state not found or is corrupted");
         }
     }
 
