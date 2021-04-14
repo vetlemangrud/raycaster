@@ -112,6 +112,9 @@ public class GameController{
 
     private boolean validateVolume(String volume){
         Pattern volumePattern = Pattern.compile("^(\\d\\d?|100)$");
+        if(volume == null){
+            return false;
+        }
         return volumePattern.matcher(volume).find();
     }
 
