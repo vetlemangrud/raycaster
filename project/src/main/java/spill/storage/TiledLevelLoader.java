@@ -70,7 +70,10 @@ public class TiledLevelLoader implements LevelLoader {
                     double startY = layer.getJSONArray("objects").getJSONObject(0).getDouble("y") / (float)tileSize;
                     startPostion = new Vector(startX, startY);
                 } else if (layer.getString("name").equals("entities")){
-                    entities.addAll(loadEntities(layer, tileSize));
+                    Iterator<Object> entityTypeIterator = layer.getJSONArray("layers").iterator();
+                    while(entityTypeIterator.hasNext()){
+                        entities.addAll(loadEntities((JSONObject) entityTypeIterator.next(), tileSize));
+                    }
                 }
             }
             
