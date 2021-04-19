@@ -13,13 +13,15 @@ public class Level {
     private int width;
     private int height;
     private Vector startPosition;
+    private String musicName;
 
     
     
     //Creates level from an array of walls
-    public Level(Wall[][] walls, Collection<Entity> entities, Vector startPosition) {
+    public Level(Wall[][] walls, Collection<Entity> entities, Vector startPosition, String musicName) {
         try {
             this.startPosition = startPosition;
+            this.musicName = musicName;
             width = walls.length;
             height = walls[0].length;
             for (Wall[] row : walls) {
@@ -37,6 +39,7 @@ public class Level {
 
     //Test level
     public Level(){
+        musicName = "jazz";
         startPosition = new Vector(10,10);
         walls = new Wall[20][20];
         width = walls.length;
@@ -80,5 +83,9 @@ public class Level {
 
     public Vector getStartPosition(){
         return startPosition.copy();
+    }
+
+    public String getMusicName(){
+        return musicName;
     }
 }

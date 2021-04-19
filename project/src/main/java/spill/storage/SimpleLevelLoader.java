@@ -69,7 +69,7 @@ public class SimpleLevelLoader implements LevelLoader {
                     entities.add(new Entity(new Vector(entityX, entityY), spriteName));
                 }
 
-                return new Level(walls, entities, startPosition);
+                return new Level(walls, entities, startPosition, "jazz");
             }
         } catch (IOException err) {
             System.err.println(err.getMessage());

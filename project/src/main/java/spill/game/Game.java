@@ -46,8 +46,7 @@ public class Game extends AnimationTimer{
         lastFrameTime = 0;
         this.start();
 
-        // Maybe later...
-        Media bgMusic = new Media(new File("project/src/main/resources/sound/bgMusic.mp3").toURI().toString());
+        Media bgMusic = new Media(new File("project/src/main/resources/sound/" + currentLevel.getMusicName() + ".mp3").toURI().toString());
         mediaPlayer = new MediaPlayer(bgMusic);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.play();

@@ -39,17 +39,20 @@ public class TiledLevelLoader implements LevelLoader {
 
             int tileSize = levelJSON.getInt("tileheight"); //Assuming square tiles
 
-            //Create HashMap that maps tile id to image name (ex. 1 -> "brick")
-            HashMap<Integer, String> tileMap = new HashMap<>();
+            //Create HashMap that maps tile id to wall
+            HashMap<Integer, Wall> tileMap = new HashMap<>();
             Iterator<Object> tileIterator = tilesetJSON.getJSONArray("tiles").iterator();
             while (tileIterator.hasNext()) {
                 JSONObject tileJSON = (JSONObject) tileIterator.next();
                 String textureFile = tileJSON.getString("image");
                 String textureName = textureFile.substring(0, textureFile.length()-4);
-                tileMap.put(tileJSON.getInt("id") + 1, textureName);
+                tileMap.put(tileJSON.getInt("id") + 1, new Wall(textureName));
             }
 
             Vector startPostion = new Vector(1.5, 1.5); //Default start position
+
+            //Gets music name
+            String musicName = levelJSON.getJSONArray("properties").getJSONObject(0).getString("value");
 
             //Iterates through layers and adds them to either entitiy list or walls
             Iterator<Object> layerIterator = levelJSON.getJSONArray("layers").iterator();
@@ -57,7 +60,7 @@ public class TiledLevelLoader implements LevelLoader {
             Collection<Entity> entities = new ArrayList<>();
             while (layerIterator.hasNext()) {
                 JSONObject layer = (JSONObject) layerIterator.next();
-                //A layer is either a tile layer or an object group
+                //A layer is either a tile layer, an object group or a group (folder)
                 if (layer.getString("type").equals("tilelayer")) {
                     //If it is a tile layer, it is an array of wall IDs
                     walls = loadWalls(layer, tileMap);
@@ -66,20 +69,20 @@ public class TiledLevelLoader implements LevelLoader {
                     double startX = layer.getJSONArray("objects").getJSONObject(0).getDouble("x") / (float)tileSize;
                     double startY = layer.getJSONArray("objects").getJSONObject(0).getDouble("y") / (float)tileSize;
                     startPostion = new Vector(startX, startY);
-                } else {
+                } else if (layer.getString("name").equals("entities")){
                     entities.addAll(loadEntities(layer, tileSize));
                 }
             }
             
 
-            return new Level(walls, entities, startPostion);
+            return new Level(walls, entities, startPostion, musicName);
         } catch (Exception err) {
             System.err.println(err.getMessage());
             return new Level();
         }
     }
     
-    private Wall[][] loadWalls(JSONObject wallJSON, HashMap<Integer, String> tileMap){
+    private Wall[][] loadWalls(JSONObject wallJSON, HashMap<Integer, Wall> tileMap){
         int levelWidth = wallJSON.getInt("width");
         int levelHeight = wallJSON.getInt("height");
         Wall[][] walls = new Wall[levelWidth][levelHeight];
@@ -88,7 +91,7 @@ public class TiledLevelLoader implements LevelLoader {
             for (int x = 0; x < levelHeight; x++) {
                 int wallId = (int) wallIterator.next();
                 if (wallId != 0) {
-                    walls[x][y] = new Wall(tileMap.get(wallId));
+                    walls[x][y] = tileMap.get(wallId);
                 } else {
                     walls[x][y] = Wall.AIR;
                 }
