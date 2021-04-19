@@ -49,6 +49,7 @@ public class Game extends AnimationTimer{
         // Maybe later...
         Media bgMusic = new Media(new File("project/src/main/resources/sound/bgMusic.mp3").toURI().toString());
         mediaPlayer = new MediaPlayer(bgMusic);
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.play();
     }
 
