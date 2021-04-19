@@ -49,22 +49,30 @@ public class TiledLevelLoader implements LevelLoader {
                 tileMap.put(tileJSON.getInt("id") + 1, textureName);
             }
 
+            Vector startPostion = new Vector(1.5, 1.5); //Default start position
+
             //Iterates through layers and adds them to either entitiy list or walls
             Iterator<Object> layerIterator = levelJSON.getJSONArray("layers").iterator();
             Wall[][] walls = new Wall[0][0];
             Collection<Entity> entities = new ArrayList<>();
             while (layerIterator.hasNext()) {
                 JSONObject layer = (JSONObject) layerIterator.next();
-                //A layer is either a tile layer or object group
+                //A layer is either a tile layer or an object group
                 if (layer.getString("type").equals("tilelayer")) {
+                    //If it is a tile layer, it is an array of wall IDs
                     walls = loadWalls(layer, tileMap);
+                } else if (layer.getString("name").equals("start")) {
+                    //If it is an object group, it is either the start position or an entity
+                    double startX = layer.getJSONArray("objects").getJSONObject(0).getDouble("x") / (float)tileSize;
+                    double startY = layer.getJSONArray("objects").getJSONObject(0).getDouble("y") / (float)tileSize;
+                    startPostion = new Vector(startX, startY);
                 } else {
                     entities.addAll(loadEntities(layer, tileSize));
                 }
             }
             
 
-            return new Level(walls, entities, new Vector(1.5,1.5));
+            return new Level(walls, entities, startPostion);
         } catch (Exception err) {
             System.err.println(err.getMessage());
             return new Level();
