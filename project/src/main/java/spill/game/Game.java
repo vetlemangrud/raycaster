@@ -117,7 +117,9 @@ public class Game extends AnimationTimer{
     }
 
     public void stopMusic(){
-        mediaPlayer.stop(); //Most important line of the whole project 👂🔫
+        if (mediaPlayer != null) {
+            mediaPlayer.stop(); //Most important line of the whole project 👂🔫
+        }
     }
 
     public void setRenderer(Renderer renderer){
