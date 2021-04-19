@@ -22,6 +22,7 @@ public class TiledLevelLoader implements LevelLoader {
         //Load level file from Tiled (https://www.mapeditor.org/)
         try {
             //Thanks to Stackoverflow "Fego" for how to load file as String https://stackoverflow.com/a/56478035/7169558
+            //Loads level file to JSON Object
             Path levelPath = new File(getClass()
             .getResource("/levels/"+ number + ".json")
             .getFile()).toPath();
@@ -29,6 +30,7 @@ public class TiledLevelLoader implements LevelLoader {
             JSONObject levelJSON = new JSONObject(levelJSONString);
 
             //Currently supports only one tileset
+            //Loads tileset fil to JSON Object
             Path tilesetPath = new File(getClass()
             .getResource("/textures/tileset.json")
             .getFile()).toPath();
@@ -37,7 +39,7 @@ public class TiledLevelLoader implements LevelLoader {
 
             int tileSize = levelJSON.getInt("tileheight"); //Assuming square tiles
 
-            //Create HasMap that maps tile id to image name (ex. 1 -> "brick")
+            //Create HashMap that maps tile id to image name (ex. 1 -> "brick")
             HashMap<Integer, String> tileMap = new HashMap<>();
             Iterator<Object> tileIterator = tilesetJSON.getJSONArray("tiles").iterator();
             while (tileIterator.hasNext()) {
@@ -47,9 +49,9 @@ public class TiledLevelLoader implements LevelLoader {
                 tileMap.put(tileJSON.getInt("id") + 1, textureName);
             }
 
+            //Iterates through layers and adds them to either entitiy list or walls
             Iterator<Object> layerIterator = levelJSON.getJSONArray("layers").iterator();
-            Wall[][] walls = new Wall[0][0
-        ];
+            Wall[][] walls = new Wall[0][0];
             Collection<Entity> entities = new ArrayList<>();
             while (layerIterator.hasNext()) {
                 JSONObject layer = (JSONObject) layerIterator.next();
