@@ -10,6 +10,7 @@ public class Level {
 
     private Wall[][] walls; //[width][height] array of walls. Cannot be null
     private Collection<Entity> entities;
+    private Collection<Exit> exits;
     private int width;
     private int height;
     private Vector startPosition;
@@ -18,7 +19,7 @@ public class Level {
     
     
     //Creates level from an array of walls
-    public Level(Wall[][] walls, Collection<Entity> entities, Vector startPosition, String musicName) {
+    public Level(Wall[][] walls, Collection<Entity> entities, Collection<Exit> exits, Vector startPosition, String musicName) {
         try {
             this.startPosition = startPosition;
             this.musicName = musicName;

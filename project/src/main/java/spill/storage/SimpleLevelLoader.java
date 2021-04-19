@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 import spill.game.entities.Entity;
+import spill.game.Exit;
 import spill.game.Level;
 import spill.game.Wall;
 import spill.game.util.Vector;
@@ -69,7 +70,7 @@ public class SimpleLevelLoader implements LevelLoader {
                     entities.add(new Entity(new Vector(entityX, entityY), spriteName));
                 }
 
-                return new Level(walls, entities, startPosition, "jazz");
+                return new Level(walls, entities, new ArrayList<Exit>(), startPosition, "jazz");
             }
         } catch (IOException err) {
             System.err.println(err.getMessage());

@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 import org.json.JSONObject;
 
+import spill.game.Exit;
 import spill.game.Level;
 
 public class TiledLevelLoader implements LevelLoader {
@@ -54,10 +55,13 @@ public class TiledLevelLoader implements LevelLoader {
             //Gets music name
             String musicName = levelJSON.getJSONArray("properties").getJSONObject(0).getString("value");
 
-            //Iterates through layers and adds them to either entitiy list or walls
-            Iterator<Object> layerIterator = levelJSON.getJSONArray("layers").iterator();
+            
             Wall[][] walls = new Wall[0][0];
             Collection<Entity> entities = new ArrayList<>();
+            Collection<Exit> exits = new ArrayList<>();
+
+            //Iterates through layers and adds them to either entitiy list or walls
+            Iterator<Object> layerIterator = levelJSON.getJSONArray("layers").iterator();
             while (layerIterator.hasNext()) {
                 JSONObject layer = (JSONObject) layerIterator.next();
                 //A layer is either a tile layer, an object group or a group (folder)
@@ -65,10 +69,12 @@ public class TiledLevelLoader implements LevelLoader {
                     //If it is a tile layer, it is an array of wall IDs
                     walls = loadWalls(layer, tileMap);
                 } else if (layer.getString("name").equals("start")) {
-                    //If it is an object group, it is either the start position or an entity
+                    //Get start position from start layer
                     double startX = layer.getJSONArray("objects").getJSONObject(0).getDouble("x") / (float)tileSize;
                     double startY = layer.getJSONArray("objects").getJSONObject(0).getDouble("y") / (float)tileSize;
                     startPostion = new Vector(startX, startY);
+                } else if (layer.getString("name").equals("exits")) {
+                    exits = loadExits(layer, tileSize);
                 } else if (layer.getString("name").equals("entities")){
                     Iterator<Object> entityTypeIterator = layer.getJSONArray("layers").iterator();
                     while(entityTypeIterator.hasNext()){
@@ -78,7 +84,7 @@ public class TiledLevelLoader implements LevelLoader {
             }
             
 
-            return new Level(walls, entities, startPostion, musicName);
+            return new Level(walls, entities, exits, startPostion, musicName);
         } catch (Exception err) {
             System.err.println(err.getMessage());
             return new Level();
@@ -110,10 +116,35 @@ public class TiledLevelLoader implements LevelLoader {
         Iterator<Object> entityIterator = entityJSON.getJSONArray("objects").iterator();
         while (entityIterator.hasNext()) {
             JSONObject eJSON = (JSONObject) entityIterator.next();
-            Vector startPosition = new Vector((float) eJSON.getInt("x") / tileSize,(float) eJSON.getInt("y") / tileSize);
+            Vector startPosition = new Vector(eJSON.getFloat("x") / tileSize,eJSON.getFloat("y") / tileSize);
             Entity entity = new Entity(startPosition, name);
             entities.add(entity);
         }
         return entities;
+    }
+
+    private Collection<Exit> loadExits(JSONObject exitsJSON, int tileSize){
+        Collection<Exit> exits = new ArrayList<>();
+        Iterator<Object> exiIterator = exitsJSON.getJSONArray("objects").iterator();
+        while (exiIterator.hasNext()) {
+            JSONObject exitJSON = (JSONObject) exiIterator.next();
+            Vector position = new Vector(exitJSON.getFloat("x") / tileSize,exitJSON.getFloat("y") / tileSize);
+            int targetLevel = 0;
+            float targetX = 0;
+            float targetY = 0;
+            Iterator<Object> propertyIterator = exitJSON.getJSONArray("properties").iterator();
+            while (propertyIterator.hasNext()) {
+                JSONObject property = (JSONObject) propertyIterator.next();
+                if (property.getString("name").equals("targetLevel")) {
+                    targetLevel = property.getInt("value");
+                } else if (property.getString("name").equals("targetX")) {
+                    targetX = property.getFloat("value");
+                } else if (property.getString("name").equals("targetY")) {
+                    targetY = property.getFloat("value");
+                }
+            }
+            exits.add(new Exit(position, targetLevel, new Vector (targetX, targetY)));
+        }
+        return exits;
     }
 }
