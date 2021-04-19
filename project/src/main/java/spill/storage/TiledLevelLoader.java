@@ -55,9 +55,9 @@ public class TiledLevelLoader implements LevelLoader {
                 JSONObject layer = (JSONObject) layerIterator.next();
                 //A layer is either a tile layer or object group
                 if (layer.getString("type").equals("tilelayer")) {
-                    walls = getWalls(layer, tileMap);
+                    walls = loadWalls(layer, tileMap);
                 } else {
-                    entities.addAll(getEntities(layer, tileSize));
+                    entities.addAll(loadEntities(layer, tileSize));
                 }
             }
             
@@ -69,7 +69,7 @@ public class TiledLevelLoader implements LevelLoader {
         }
     }
     
-    private Wall[][] getWalls(JSONObject wallJSON, HashMap<Integer, String> tileMap){
+    private Wall[][] loadWalls(JSONObject wallJSON, HashMap<Integer, String> tileMap){
         int levelWidth = wallJSON.getInt("width");
         int levelHeight = wallJSON.getInt("height");
         Wall[][] walls = new Wall[levelWidth][levelHeight];
@@ -88,7 +88,7 @@ public class TiledLevelLoader implements LevelLoader {
         return walls;
     }
 
-    private Collection<Entity> getEntities(JSONObject entityJSON, int tileSize){
+    private Collection<Entity> loadEntities(JSONObject entityJSON, int tileSize){
         String name = entityJSON.getString("name");
         Collection<Entity> entities = new ArrayList<>();
         Iterator<Object> entityIterator = entityJSON.getJSONArray("objects").iterator();
