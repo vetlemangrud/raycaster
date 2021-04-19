@@ -46,10 +46,15 @@ public class Game extends AnimationTimer{
         lastFrameTime = 0;
         this.start();
 
-        Media bgMusic = new Media(new File("project/src/main/resources/sound/" + currentLevel.getMusicName() + ".mp3").toURI().toString());
-        mediaPlayer = new MediaPlayer(bgMusic);
-        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-        mediaPlayer.play();
+        try{
+            Media bgMusic = new Media(new File("project/src/main/resources/sound/" + currentLevel.getMusicName() + ".mp3").toURI().toString());
+            mediaPlayer = new MediaPlayer(bgMusic);
+            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+            mediaPlayer.play();
+        } catch (Exception err) {
+            System.err.println(err.getMessage());
+        }
+        
     }
 
     @Override
