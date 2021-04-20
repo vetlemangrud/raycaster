@@ -42,10 +42,10 @@ public class Level {
         
     }
 
-    //Test level
+    //Error level
     public Level(){
         id = 0;
-        musicName = "jazz";
+        musicName = "spooky";
         startPosition = new Vector(10,10);
         walls = new Wall[20][20];
         width = walls.length;
