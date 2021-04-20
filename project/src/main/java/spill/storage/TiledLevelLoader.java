@@ -96,8 +96,8 @@ public class TiledLevelLoader implements LevelLoader {
         int levelHeight = wallJSON.getInt("height");
         Wall[][] walls = new Wall[levelWidth][levelHeight];
         Iterator<Object> wallIterator = wallJSON.getJSONArray("data").iterator();
-        for (int y = 0; y < levelWidth; y++) {
-            for (int x = 0; x < levelHeight; x++) {
+        for (int y = 0; y < levelHeight; y++) {
+            for (int x = 0; x < levelWidth; x++) {
                 int wallId = (int) wallIterator.next();
                 if (wallId != 0) {
                     walls[x][y] = tileMap.get(wallId);
