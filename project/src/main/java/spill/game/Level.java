@@ -31,6 +31,7 @@ public class Level {
                 }
             }
             this.entities = entities;
+            this.exits = exits;
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new IllegalArgumentException("Levels must be a NxM 2d matrix and cannot be empty");
         }
@@ -55,6 +56,7 @@ public class Level {
             }
         }
         this.entities = new ArrayList<>();
+        this.exits = new ArrayList<>();
     }
 
     public Wall getWall(int x, int y){
@@ -72,6 +74,10 @@ public class Level {
 
     public Collection<Entity> getEntities() {
         return entities;
+    }
+
+    public Collection<Exit> getExits(){
+        return exits;
     }
 
     public int getWidth(){

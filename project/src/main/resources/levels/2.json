@@ -3,6 +3,44 @@
  "infinite":false,
  "layers":[
         {
+         "draworder":"topdown",
+         "id":6,
+         "name":"exits",
+         "objects":[
+                {
+                 "height":39,
+                 "id":8,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"targetLevel",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"targetX",
+                         "type":"float",
+                         "value":12.5
+                        }, 
+                        {
+                         "name":"targetY",
+                         "type":"float",
+                         "value":4.5
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":14.0909090909091,
+                 "x":30.6363636363636,
+                 "y":126.090909090909
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
          "data":[4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
          "height":10,
          "id":1,
@@ -16,20 +54,20 @@
         }, 
         {
          "draworder":"topdown",
-         "id":2,
-         "name":"josephine",
+         "id":4,
+         "name":"start",
          "objects":[
                 {
                  "height":0,
-                 "id":1,
+                 "id":6,
                  "name":"",
                  "point":true,
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":204.937121564974,
-                 "y":147.927340475082
+                 "x":48.5260193928103,
+                 "y":145.518821188127
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -38,67 +76,106 @@
          "y":0
         }, 
         {
-         "draworder":"topdown",
-         "id":3,
-         "name":"pillar",
-         "objects":[
+         "id":5,
+         "layers":[
                 {
-                 "height":0,
+                 "draworder":"topdown",
                  "id":2,
-                 "name":"",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
+                 "name":"josephine",
+                 "objects":[
+                        {
+                         "height":0,
+                         "id":1,
+                         "name":"",
+                         "point":true,
+                         "rotation":0,
+                         "type":"",
+                         "visible":true,
+                         "width":0,
+                         "x":204.937121564974,
+                         "y":147.927340475082
+                        }],
+                 "opacity":1,
+                 "type":"objectgroup",
                  "visible":true,
-                 "width":0,
-                 "x":239.21751280857,
-                 "y":80.4843968327899
+                 "x":0,
+                 "y":0
                 }, 
                 {
-                 "height":0,
+                 "draworder":"topdown",
                  "id":3,
-                 "name":"",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
+                 "name":"pillar",
+                 "objects":[
+                        {
+                         "height":0,
+                         "id":2,
+                         "name":"",
+                         "point":true,
+                         "rotation":0,
+                         "type":"",
+                         "visible":true,
+                         "width":0,
+                         "x":239.21751280857,
+                         "y":80.4843968327899
+                        }, 
+                        {
+                         "height":0,
+                         "id":3,
+                         "name":"",
+                         "point":true,
+                         "rotation":0,
+                         "type":"",
+                         "visible":true,
+                         "width":0,
+                         "x":78.2487191429902,
+                         "y":80.4843968327899
+                        }, 
+                        {
+                         "height":0,
+                         "id":4,
+                         "name":"",
+                         "point":true,
+                         "rotation":0,
+                         "type":"",
+                         "visible":true,
+                         "width":0,
+                         "x":78.6213320912902,
+                         "y":241.08057755007
+                        }, 
+                        {
+                         "height":0,
+                         "id":5,
+                         "name":"",
+                         "point":true,
+                         "rotation":0,
+                         "type":"",
+                         "visible":true,
+                         "width":0,
+                         "x":239.59012575687,
+                         "y":241.82580344667
+                        }],
+                 "opacity":1,
+                 "type":"objectgroup",
                  "visible":true,
-                 "width":0,
-                 "x":78.2487191429902,
-                 "y":80.4843968327899
-                }, 
-                {
-                 "height":0,
-                 "id":4,
-                 "name":"",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":78.6213320912902,
-                 "y":241.08057755007
-                }, 
-                {
-                 "height":0,
-                 "id":5,
-                 "name":"",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":239.59012575687,
-                 "y":241.82580344667
+                 "x":0,
+                 "y":0
                 }],
+         "name":"entities",
          "opacity":1,
-         "type":"objectgroup",
+         "type":"group",
          "visible":true,
          "x":0,
          "y":0
         }],
- "nextlayerid":4,
- "nextobjectid":6,
+ "nextlayerid":7,
+ "nextobjectid":9,
  "orientation":"orthogonal",
+ "properties":[
+        {
+         "name":"Background Music",
+         "type":"string",
+         "value":"jazz"
+        }],
  "renderorder":"right-down",
  "tiledversion":"1.5.0",
  "tileheight":32,

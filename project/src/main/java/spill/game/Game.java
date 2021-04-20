@@ -43,12 +43,20 @@ public class Game extends AnimationTimer{
         currentLevel = levelLoader.load(1);
         player = new Player(currentLevel);
         paused = false;
-        lastFrameTime = 0;
+        startMusic();
         this.start();
+    }
 
+    private void startMusic(){
         try{
+            double volume = 50;
+            if (mediaPlayer != null) {
+                volume = mediaPlayer.getVolume();
+                mediaPlayer.stop();
+            }
             Media bgMusic = new Media(new File("project/src/main/resources/sound/" + currentLevel.getMusicName() + ".mp3").toURI().toString());
             mediaPlayer = new MediaPlayer(bgMusic);
+            mediaPlayer.setVolume(volume);
             mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
             mediaPlayer.play();
         } catch (Exception err) {
@@ -74,6 +82,14 @@ public class Game extends AnimationTimer{
         }
         if (pressedKeys.contains(TURNRIGHTKEY)) {
             player.turnRight(deltaTime);
+        }
+
+        Collection<Exit> exitsInRange = player.getExitsInRange();
+        if (exitsInRange.size() > 0) {
+            Exit exit = exitsInRange.iterator().next();
+            currentLevel = levelLoader.load(exit.getTargetLevel());
+            startMusic();
+            player = new Player(currentLevel, exit.getTargetPos().getX(), exit.getTargetPos().getY(), player.getDirection().getAngle());
         }
 
         renderer.render();

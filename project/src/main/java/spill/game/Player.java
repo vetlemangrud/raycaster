@@ -1,5 +1,8 @@
 package spill.game;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import spill.game.util.RayCaster;
 import spill.game.util.RayHit;
 import spill.game.util.Vector;
@@ -8,7 +11,7 @@ public class Player {
     public static final double SPEED = 3; //Squares per second
     public static final double TURNSPEED = 3; //Radians per second
     public static final double MIN_WALL_DIST = 0.1; //It it possible to get "infinitly" close to a wall, but not possible to clip a wall. MIN_WALL_DIST is distance from a wall and a player walking right on it ( o -> |)
-
+   
     private Vector pos;
     private Vector direction;
     private Level level;
@@ -67,6 +70,18 @@ public class Player {
 
     public void turnRight(double deltaTime){
         direction.rotate(TURNSPEED * deltaTime);
+    }
+
+    public Collection<Exit> getExitsInRange(){
+        //Returns all exits player is in range of
+        Collection<Exit> exitsInRange = new ArrayList<>();
+        for (Exit exit : level.getExits()) {
+            //Squaring both distances for efficiency
+            if (exit.isInside(pos)) {
+                exitsInRange.add(exit);
+            }
+        }
+        return exitsInRange;
     }
 
 

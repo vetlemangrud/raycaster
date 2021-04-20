@@ -129,6 +129,8 @@ public class TiledLevelLoader implements LevelLoader {
         while (exiIterator.hasNext()) {
             JSONObject exitJSON = (JSONObject) exiIterator.next();
             Vector position = new Vector(exitJSON.getFloat("x") / tileSize,exitJSON.getFloat("y") / tileSize);
+            double width = exitJSON.getFloat("width") / tileSize;
+            double height = exitJSON.getFloat("height") / tileSize;
             int targetLevel = 0;
             float targetX = 0;
             float targetY = 0;
@@ -143,7 +145,7 @@ public class TiledLevelLoader implements LevelLoader {
                     targetY = property.getFloat("value");
                 }
             }
-            exits.add(new Exit(position, targetLevel, new Vector (targetX, targetY)));
+            exits.add(new Exit(position, width, height, targetLevel, new Vector (targetX, targetY)));
         }
         return exits;
     }

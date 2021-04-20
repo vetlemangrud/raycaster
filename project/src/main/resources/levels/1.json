@@ -99,10 +99,9 @@
          "name":"exits",
          "objects":[
                 {
-                 "height":0,
-                 "id":46,
+                 "height":36.125,
+                 "id":49,
                  "name":"",
-                 "point":true,
                  "properties":[
                         {
                          "name":"targetLevel",
@@ -112,7 +111,7 @@
                         {
                          "name":"targetX",
                          "type":"float",
-                         "value":2
+                         "value":1.5
                         }, 
                         {
                          "name":"targetY",
@@ -122,9 +121,9 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":0,
-                 "x":416,
-                 "y":145
+                 "width":11.5568181818182,
+                 "x":406.068181818182,
+                 "y":126.125
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -145,7 +144,7 @@
          "y":0
         }],
  "nextlayerid":15,
- "nextobjectid":47,
+ "nextobjectid":50,
  "orientation":"orthogonal",
  "properties":[
         {
