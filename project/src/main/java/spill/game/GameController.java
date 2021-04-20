@@ -94,6 +94,7 @@ public class GameController{
 
     public void closePauseScreen(){
         menuPane.setVisible(false);
+        settingsPane.setVisible(false);
     }
 
     private void loadSettings(int storageId){
