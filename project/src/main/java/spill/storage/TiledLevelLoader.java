@@ -19,13 +19,13 @@ import spill.game.Exit;
 import spill.game.Level;
 
 public class TiledLevelLoader implements LevelLoader {
-    public Level load(int number){
+    public Level load(int id){
         //Load level file from Tiled (https://www.mapeditor.org/)
         try {
             //Thanks to Stackoverflow "Fego" for how to load file as String https://stackoverflow.com/a/56478035/7169558
             //Loads level file to JSON Object
             Path levelPath = new File(getClass()
-            .getResource("/levels/"+ number + ".json")
+            .getResource("/levels/"+ id + ".json")
             .getFile()).toPath();
             String levelJSONString = Files.readString(levelPath);
             JSONObject levelJSON = new JSONObject(levelJSONString);
@@ -84,7 +84,7 @@ public class TiledLevelLoader implements LevelLoader {
             }
             
 
-            return new Level(walls, entities, exits, startPostion, musicName);
+            return new Level(id, walls, entities, exits, startPostion, musicName);
         } catch (Exception err) {
             System.err.println(err.getMessage());
             return new Level();

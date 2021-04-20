@@ -38,9 +38,9 @@ public class SimpleLevelLoader implements LevelLoader {
         wallCodes.put(' ', Wall.AIR);
     }
     
-    public Level load(int number){
+    public Level load(int id){
         //Load .level file
-        try (InputStream is = getClass().getResourceAsStream("/levels/"+ number + "." + LEVEL_EXTENSION)) { 
+        try (InputStream is = getClass().getResourceAsStream("/levels/"+ id + "." + LEVEL_EXTENSION)) { 
             try (Scanner scanner = new Scanner(is)) {
                 //Get level size
                 int width = Integer.parseInt(scanner.nextLine());
@@ -70,7 +70,7 @@ public class SimpleLevelLoader implements LevelLoader {
                     entities.add(new Entity(new Vector(entityX, entityY), spriteName));
                 }
 
-                return new Level(walls, entities, new ArrayList<Exit>(), startPosition, "jazz");
+                return new Level(id, walls, entities, new ArrayList<Exit>(), startPosition, "jazz");
             }
         } catch (IOException err) {
             System.err.println(err.getMessage());

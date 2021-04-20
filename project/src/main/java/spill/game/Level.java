@@ -8,6 +8,7 @@ import spill.game.entities.Entity;
 
 public class Level {
 
+    private int id;
     private Wall[][] walls; //[width][height] array of walls. Cannot be null
     private Collection<Entity> entities;
     private Collection<Exit> exits;
@@ -19,10 +20,13 @@ public class Level {
     
     
     //Creates level from an array of walls
-    public Level(Wall[][] walls, Collection<Entity> entities, Collection<Exit> exits, Vector startPosition, String musicName) {
+    public Level(int id, Wall[][] walls, Collection<Entity> entities, Collection<Exit> exits, Vector startPosition, String musicName) {
         try {
+            this.id = id;
             this.startPosition = startPosition;
             this.musicName = musicName;
+            this.entities = entities;
+            this.exits = exits;
             width = walls.length;
             height = walls[0].length;
             for (Wall[] row : walls) {
@@ -30,8 +34,7 @@ public class Level {
                     throw new IllegalArgumentException("Levels must be a NxM 2d matrix");
                 }
             }
-            this.entities = entities;
-            this.exits = exits;
+            
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new IllegalArgumentException("Levels must be a NxM 2d matrix and cannot be empty");
         }
@@ -41,6 +44,7 @@ public class Level {
 
     //Test level
     public Level(){
+        id = 0;
         musicName = "jazz";
         startPosition = new Vector(10,10);
         walls = new Wall[20][20];
@@ -94,5 +98,9 @@ public class Level {
 
     public String getMusicName(){
         return musicName;
+    }
+
+    public int getId(){
+        return id;
     }
 }

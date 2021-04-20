@@ -21,6 +21,7 @@ public class Game extends AnimationTimer{
     public static final String TURNLEFTKEY = "A";
     public static final String TURNRIGHTKEY = "D";
     public static final String MENUKEY = "Esc";
+    public static final int STARTLEVEL = 1;
 
     private GameController gameController;
     private Renderer renderer;
@@ -40,7 +41,7 @@ public class Game extends AnimationTimer{
         this.gameController = gameController;
         levelLoader = new TiledLevelLoader();
         pressedKeys = new ArrayList<>();
-        currentLevel = levelLoader.load(1);
+        currentLevel = levelLoader.load(STARTLEVEL);
         player = new Player(currentLevel);
         paused = false;
         startMusic();
@@ -112,6 +113,7 @@ public class Game extends AnimationTimer{
 
     public void saveState() {
         try {
+            storage.writeSave("LEVEL", String.valueOf(currentLevel.getId()));
             storage.writeSave("PLAYER_X", String.valueOf(player.getPos().getX()));
             storage.writeSave("PLAYER_Y", String.valueOf(player.getPos().getY()));
             storage.writeSave("PLAYER_ANGLE", String.valueOf(player.getDirection().getAngle()));
@@ -122,6 +124,8 @@ public class Game extends AnimationTimer{
 
     public void loadState() {
         try {
+            currentLevel = levelLoader.load(Integer.parseInt(storage.readSave("LEVEL")));
+            startMusic();
             double x = Double.parseDouble(storage.readSave("PLAYER_X"));
             double y = Double.parseDouble(storage.readSave("PLAYER_Y"));
             double angle = Double.parseDouble(storage.readSave("PLAYER_ANGLE"));
