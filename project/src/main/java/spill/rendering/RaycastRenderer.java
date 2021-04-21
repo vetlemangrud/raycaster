@@ -18,20 +18,18 @@ public class RaycastRenderer extends Renderer {
     private static final int RAY_COUNT = 800;
     private static final double FOV = Math.PI/2.8;
 
-    private ImageView gameImageView;
     private PixelWriter currentPixelWriter;
     private RayHit[] rayHits;
     
     
-    public RaycastRenderer(GraphicsContext gc, Game gameContext, ImageView gameImageView, double canvasWidth, double canvasHeight) {
+    public RaycastRenderer(GraphicsContext gc, Game gameContext, double canvasWidth, double canvasHeight) {
         super(gc, gameContext, canvasWidth, canvasHeight);
-        this.gameImageView = gameImageView;
         rayHits = new RayHit[RAY_COUNT];
     }
 
     @Override
     public void render() {
-        WritableImage currentFrame = new WritableImage((int) gameImageView.getFitWidth(), (int) gameImageView.getFitHeight());
+        WritableImage currentFrame = new WritableImage((int) canvasWidth, (int) canvasHeight);
         currentPixelWriter = currentFrame.getPixelWriter();
         castRays();
 
@@ -41,13 +39,12 @@ public class RaycastRenderer extends Renderer {
 
         drawWalls();
         drawEntities();
-        gameImageView.setImage(currentFrame);
+        gc.drawImage(currentFrame, 0, 0);
 
     }
 
     @Override
     public void clear(){
-        gameImageView.setImage(new WritableImage((int) gameImageView.getFitWidth(), (int) gameImageView.getFitHeight()));
         gc.clearRect(0,0,canvasWidth,canvasHeight);
     }
 

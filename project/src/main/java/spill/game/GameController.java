@@ -130,7 +130,7 @@ public class GameController{
         game.setStorageId(storageId);
         game.loadState();
         
-        rayCastRenderer = new RaycastRenderer(canvas.getGraphicsContext2D(),game,gameImageView ,canvas.getWidth(),canvas.getHeight());
+        rayCastRenderer = new RaycastRenderer(canvas.getGraphicsContext2D(), game,canvas.getWidth(),canvas.getHeight());
         birdseyeRenderer = new BirdseyeRenderer(canvas.getGraphicsContext2D(),game,canvas.getWidth(),canvas.getHeight());
         
         
