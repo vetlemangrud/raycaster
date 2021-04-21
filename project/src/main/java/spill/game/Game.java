@@ -16,12 +16,12 @@ import spill.storage.TiledLevelLoader;
 
 public class Game extends AnimationTimer{
     // TODO: Sette dette i storage, så hver save kan ha egne controls
-    public static final String FORWARDKEY = "W";
-    public static final String BACKKEY = "S";
-    public static final String TURNLEFTKEY = "A";
-    public static final String TURNRIGHTKEY = "D";
-    public static final String MENUKEY = "Esc";
-    public static final int STARTLEVEL = 1;
+    private static final String FORWARDKEY = "W";
+    private static final String BACKKEY = "S";
+    private static final String TURNLEFTKEY = "A";
+    private static final String TURNRIGHTKEY = "D";
+    private static final String MENUKEY = "Esc";
+    private static final int STARTLEVEL = 1;
 
     private GameController gameController;
     private Renderer renderer;
@@ -48,23 +48,7 @@ public class Game extends AnimationTimer{
         this.start();
     }
 
-    private void startMusic(){
-        try{
-            double volume = 50;
-            if (mediaPlayer != null) {
-                volume = mediaPlayer.getVolume();
-                mediaPlayer.stop();
-            }
-            Media bgMusic = new Media(getClass().getResource("/sound/" + currentLevel.getMusicName() + ".mp3").toURI().toString());
-            mediaPlayer = new MediaPlayer(bgMusic);
-            mediaPlayer.setVolume(volume);
-            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-            mediaPlayer.play();
-        } catch (Exception err) {
-            System.err.println(err.getMessage());
-        }
-        
-    }
+    
 
     @Override
     public void handle(long now){
@@ -134,6 +118,24 @@ public class Game extends AnimationTimer{
         } catch (Exception e) {
             System.out.println("Saved state not found or is corrupted");
         }
+    }
+
+    private void startMusic(){
+        try{
+            double volume = 50;
+            if (mediaPlayer != null) {
+                volume = mediaPlayer.getVolume();
+                mediaPlayer.stop();
+            }
+            Media bgMusic = new Media(getClass().getResource("/sound/" + currentLevel.getMusicName() + ".mp3").toURI().toString());
+            mediaPlayer = new MediaPlayer(bgMusic);
+            mediaPlayer.setVolume(volume);
+            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+            mediaPlayer.play();
+        } catch (Exception err) {
+            System.err.println(err.getMessage());
+        }
+        
     }
 
     public void stopMusic(){
