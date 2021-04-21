@@ -58,6 +58,8 @@ public class StorageTest {
         testInvalidValueName("");
         testInvalidValueName("\n");
         testInvalidValueName("\n\n\n");
+        testInvalidValueName("Hello\n");
+        testInvalidValueName("Hello\nHowareyou?");
     }
 
     @Test
