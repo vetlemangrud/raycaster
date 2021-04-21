@@ -25,9 +25,6 @@ public class GameController{
     private Canvas canvas;
 
     @FXML
-    private ImageView gameImageView;
-
-    @FXML
     private Pane menuPane;
 
     @FXML
