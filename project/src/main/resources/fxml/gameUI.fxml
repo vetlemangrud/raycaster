@@ -33,7 +33,7 @@
                   <Font size="40.0" />
                </font>
             </Text>
-            <Slider fx:id="volumeSlider" disable="true" focusTraversable="false" layoutX="68.0" layoutY="182.0" onMouseDragged="#onVolumeSliderDrag" onTouchMoved="#onVolumeSliderDrag" prefHeight="37.0" prefWidth="266.0" />
+            <Slider fx:id="volumeSlider" focusTraversable="false" layoutX="68.0" layoutY="182.0" onMouseDragged="#onVolumeSliderDrag" onTouchMoved="#onVolumeSliderDrag" prefHeight="37.0" prefWidth="266.0" />
             <Text fill="WHITE" layoutX="167.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Volume">
                <font>
                   <Font size="20.0" />
