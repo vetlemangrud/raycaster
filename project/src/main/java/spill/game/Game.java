@@ -55,7 +55,7 @@ public class Game extends AnimationTimer{
                 volume = mediaPlayer.getVolume();
                 mediaPlayer.stop();
             }
-            Media bgMusic = new Media(new File("project/src/main/resources/sound/" + currentLevel.getMusicName() + ".mp3").toURI().toString());
+            Media bgMusic = new Media(getClass().getResource("/sound/" + currentLevel.getMusicName() + ".mp3").toURI().toString());
             mediaPlayer = new MediaPlayer(bgMusic);
             mediaPlayer.setVolume(volume);
             mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
