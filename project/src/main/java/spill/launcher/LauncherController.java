@@ -41,6 +41,7 @@ public class LauncherController {
         
         try {
             String saveName = validateSaveName(saveNameTextField.getText());
+            errorText.setVisible(false);
             int[] usedIds = Storage.getAllUsedIds();
             int saveId = 1;
             try {
@@ -105,6 +106,7 @@ public class LauncherController {
 
     //Exits launcher to game
     private void openGameScene(ActionEvent actionEvent){
+        errorText.setVisible(false);
         int id = Integer.parseInt(((Button) actionEvent.getSource()).getId());
 		Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         stage.setScene(gameScene);
