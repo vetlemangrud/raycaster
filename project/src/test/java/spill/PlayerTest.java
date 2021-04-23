@@ -3,12 +3,17 @@ package spill;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import spill.game.Exit;
 import spill.game.Level;
 import spill.game.Player;
 import spill.game.Wall;
+import spill.game.entities.Entity;
+import spill.game.util.Vector;
 
 public class PlayerTest {
     Player testPlayer;
@@ -27,7 +32,7 @@ public class PlayerTest {
                 }
             }
         }
-        testLevel = new Level(walls);
+        testLevel = new Level(0, walls, new ArrayList<Entity>(), new ArrayList<Exit>(), new Vector(10,10), "jazz");
         testPlayer = new Player(testLevel, 10, 10, 0);
     }
 
