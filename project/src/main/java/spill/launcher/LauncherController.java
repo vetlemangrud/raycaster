@@ -98,7 +98,7 @@ public class LauncherController {
         Pattern saveNamePattern = Pattern.compile("^(?=.*[A-Za-z])(\\w| |-)*$");
         if (!saveNamePattern.matcher(saveName).find()) {
             throw new IllegalArgumentException(
-                    "Save name must contain at loast one letter a-z, space, underscore and dash");
+                    "Save name must contain at least one letter a-z, space, underscore and dash");
         }
         return saveName;
     }
