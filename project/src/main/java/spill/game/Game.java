@@ -110,9 +110,20 @@ public class Game extends AnimationTimer{
         try {
             currentLevel = levelLoader.load(Integer.parseInt(storage.readSave("LEVEL")));
             startMusic();
-            double x = Double.parseDouble(storage.readSave("PLAYER_X"));
-            double y = Double.parseDouble(storage.readSave("PLAYER_Y"));
-            double angle = Double.parseDouble(storage.readSave("PLAYER_ANGLE"));
+            double x;
+            double y;
+            double angle;
+            try {
+                x = Double.parseDouble(storage.readSave("PLAYER_X"));
+                y = Double.parseDouble(storage.readSave("PLAYER_Y"));
+                angle = Double.parseDouble(storage.readSave("PLAYER_ANGLE"));
+            } catch (Exception e) {
+                System.out.println("Saved player state not found or is corrupted");
+                x = currentLevel.getStartPosition().getX();
+                y = currentLevel.getStartPosition().getY();
+                angle = 0;
+            }
+            
             player = new Player(currentLevel, x, y, angle);
             changeVolume(Integer.parseInt(storage.readSave("VOLUME")));
         } catch (Exception e) {
