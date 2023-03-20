@@ -40,28 +40,27 @@
   	<plugins>
   		<plugin>
   			<artifactId>maven-compiler-plugin</artifactId>
-  			<version>3.8.0</version>
+  			<version>3.9.0</version>
   			<configuration>
-  				<release>15</release>
-  				<compilerArgs>
-  					--enable-preview
-  				</compilerArgs>
+  				<release>17</release>
   			</configuration>
   		</plugin>
   		<plugin>
   			<artifactId>maven-surefire-plugin</artifactId>
   			<version>3.0.0-M5</version>
-  			<configuration>
-  				<argLine>--enable-preview</argLine>
-  			</configuration>
   		</plugin>
   		<plugin>
   			<artifactId>maven-failsafe-plugin</artifactId>
   			<version>3.0.0-M5</version>
-  			<configuration>
-  				<argLine>--enable-preview</argLine>
-  			</configuration>
   		</plugin>
+		<plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.5</version>
+                <configuration>                    
+		    <mainClass>spill.GameApp</mainClass><!--Endre denne til å peke på din App-klasse om du vil bruke javafx-maven-plugin -->
+                </configuration>
+	</plugin>
   		
   		<!-- Package as jar -->
 <!--   		<plugin> -->
